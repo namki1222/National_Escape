@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/point">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:padding="17dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/notosanscjkkr_medium_cus"
+            android:text="매장 관리"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/line_homefocus"
+                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="기본정보"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                //지역
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="지역"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+
+                            <EditText
+                                android:id="@+id/edit_location"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="center_vertical"
+                                android:hint="선택"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp"
+                                android:focusable="false"/>
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="10dp"
+                                android:adjustViewBounds="true"
+                                android:src="@color/star" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                //상호
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="상호"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+                            <EditText
+                                android:id="@+id/edit_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:hint="상호명을 입력하세요"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp"
+                                android:background="@null"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="한줄 설명"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+                            <EditText
+                                android:id="@+id/edit_intro"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:hint="한줄 설명을 입력하세요"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp"
+                                android:background="@null"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                //소개
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:paddingLeft="10dp"
+                        android:text="소개"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+
+                            <EditText
+                                android:id="@+id/edit_introfocus"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="top"
+                                android:hint="소개글을 입력하세요"
+                                android:paddingBottom="5dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="5dp"
+                                android:paddingTop="5dp"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                //요금
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="요금"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btn_menuadd"
+                            android:layout_width="100dp"
+                            android:layout_height="30dp"
+                            android:background="@color/point3"
+                            android:text="메뉴/가격 추가"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/list_menu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                //메인 이미지
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="메인이미지"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btn_mainpicture_add"
+                            android:layout_width="70dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/point3"
+                            android:text="사진 추가"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                        <RelativeLayout
+                            android:layout_width="55dp"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/img_main"
+                                android:layout_width="45dp"
+                                android:layout_height="38dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/gray"
+                                android:scaleType="centerCrop"/>
+
+                            <ImageView
+                                android:id="@+id/img_main_cancel"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/manager_imgdelete" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                //상세 이미지
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="30dp"
+                            android:fontFamily="@font/notosanscjkkr_medium_cus"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:text="상세이미지"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <Button
+                            android:id="@+id/btn_extrapicture_add"
+                            android:layout_width="70dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/point3"
+                            android:text="사진 추가"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub1_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub2_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub3_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub4_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub5_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub6_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+                //위치
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="위치"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+
+                            <EditText
+                                android:id="@+id/edit_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="center_vertical"
+                                android:hint="지도를 검색하세요"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp"
+                                android:focusable="false"/>
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="10dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/map_marker" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="상세 주소"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+
+                            <EditText
+                                android:id="@+id/edit_address_focus"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="center_vertical"
+                                android:hint="상세주소를 입력하세요"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                //전화번호
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="전화번호"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+                            <EditText
+                                android:id="@+id/edit_phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:hint="전화번호를 입력하세요"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp"
+                                android:background="@null"
+                                android:inputType="number"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                //예약페이지
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="예약페이지"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+                            <EditText
+                                android:id="@+id/edit_bookpage"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:hint="예약페이지 주소를 입력하세요"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp"
+                                android:background="@null"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                //홈페이지
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="홈페이지"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_homefocus">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@color/white">
+
+                            <EditText
+                                android:id="@+id/edit_homepage"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:gravity="center_vertical"
+                                android:hint="홈페이지 주소를 입력하세요"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/gray"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/point3"
+                    android:fontFamily="@font/notosanscjkkr_medium_cus"
+                    android:hint="수정"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

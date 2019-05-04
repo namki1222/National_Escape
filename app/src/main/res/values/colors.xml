@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2b2b2b</color>
+    <color name="colorPrimaryDark">#272727</color>
+    <color name="colorAccent">#f6b400</color>
+
+    <color name="point">#2b2b2b</color>
+    <color name="point2">#ffff00</color>
+    <color name="point3">#f6b400</color>
+    <color name="tab3_back">#272727</color>
+    <color name="warning">#df4444</color>
+    <color name="img_placeholder">#d7d7d7</color>
+    <color name="line">#f2f2f2</color>
+    <color name="line_homefocus">#e4e4e4</color>
+    <color name="line_home">#e4e4e4</color>
+    <color name="date_gray">#8c8c8c</color>
+    <color name="star">#ffff00</color>
+    <color name="tab_text">#ffc600</color>
+    <color name="text_gray">#a2a2a2</color>
+    <color name = "white">#ffffff</color>
+    <color name = "black">#000000</color>
+    <color name = "gray">#858585</color>
+
+    <color name = "line_gold">#fce977</color>
+</resources>

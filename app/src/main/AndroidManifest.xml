@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="blackcap.nationalescape">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".Activity.Flash"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".Activity.tab1.Home_Focus"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activity.tab1.Home_Focus_Review"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activity.tab1.Home_Filter"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activity.user.Login"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activity.tab0.Event_Focus"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".Activity.user.Login_Join1"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.user.Login_Join2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.user.Login_Password"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.user.Login_Password_Change"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Activity.tab3.Theme_Filter"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab3.Theme_Focus"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab3.Theme_Focus_Write"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab3.Theme_Focus_Modify"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab3.Theme_Focus_Review"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Activity.tab4.Notice"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Notice_Focus"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Setting"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Setting_ChangeUser"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Recommend"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Manager"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Manager_Address"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Manager_Approval"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Manager_Succed"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Manager_Modify"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Manager_Modify_Succed"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Company_Favorite"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Theme_Favority"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Review_Search"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.tab4.Review_MyReview"
+            android:screenOrientation="portrait"/>
+
+        //카카오 api key
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="8a051509be29c395e615273bebce38ef"/>
+
+        //구글 서비스용
+        <!--아래 두개의 서비스 태그를 추가한다.-->
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+    </application>
+
+    //인터넷 사용 권한
+    <uses-permission  android:name="android.permission.INTERNET" />
+    //GPS 사용 권한
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    //인앱 결재
+    <uses-permission android:name="com.android.vending.BILLING" />
+    //전화 걸기
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
+</manifest>

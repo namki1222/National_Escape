@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">전국방탈출</string>
+    <string name="http_error">잠시 후 다시 이용바랍니다.</string>
+    <string name="join_line"><u>인증번호 다시받기</u></string>
+    <string name="setting_logout"><u>로그아웃</u></string>
+    <string name="setting_drop"><u>회원탈퇴</u></string>
+    <string name="main_companytitle">신규&amp;MD\&apos;s pick 카페</string>
+</resources>
