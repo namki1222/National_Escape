@@ -1,7 +1,7 @@
 package blackcap.nationalescape.Uitility;
 
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by 박효근 on 2018-02-12.

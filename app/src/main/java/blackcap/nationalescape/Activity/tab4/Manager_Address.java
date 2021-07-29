@@ -3,8 +3,9 @@ package blackcap.nationalescape.Activity.tab4;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -51,7 +52,7 @@ public class Manager_Address extends AppCompatActivity {
         web_address.addJavascriptInterface(new AndroidBridge(), "TestApp");
         // web client 를 chrome 으로 설정
         web_address.setWebChromeClient(new WebChromeClient());
-        web_address.loadUrl("http://codeman77.ivyro.net/getAddress.php");
+        web_address.loadUrl("http://www.yologuys.com/address/search_and.html");
     }
     private class AndroidBridge {
         @JavascriptInterface

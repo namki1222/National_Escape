@@ -2,13 +2,14 @@ package blackcap.nationalescape.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -50,6 +51,45 @@ public class Tab2_Focus_Theme_Adapter extends RecyclerView.Adapter<Tab2_Focus_Th
             holder.Txt_Title.setText(items.getTitle());
             //업체 소개
             holder.Txt_Category.setText(items.getCategory());
+            holder.Txt_Grade.setText(items.getGrade()+"점");
+
+            //난이도
+            if(items.getLevel().equals("1")){
+                holder.Img_Level1.setVisibility(View.VISIBLE);
+                holder.Img_Level2.setVisibility(View.GONE);
+                holder.Img_Level3.setVisibility(View.GONE);
+                holder.Img_Level4.setVisibility(View.GONE);
+                holder.Img_Level5.setVisibility(View.GONE);
+
+            }
+            else if(items.getLevel().equals("2")){
+                holder.Img_Level1.setVisibility(View.VISIBLE);
+                holder.Img_Level2.setVisibility(View.VISIBLE);
+                holder.Img_Level3.setVisibility(View.GONE);
+                holder.Img_Level4.setVisibility(View.GONE);
+                holder.Img_Level5.setVisibility(View.GONE);
+            }
+            else if(items.getLevel().equals("3")){
+                holder.Img_Level1.setVisibility(View.VISIBLE);
+                holder.Img_Level2.setVisibility(View.VISIBLE);
+                holder.Img_Level3.setVisibility(View.VISIBLE);
+                holder.Img_Level4.setVisibility(View.GONE);
+                holder.Img_Level5.setVisibility(View.GONE);
+            }
+            else if(items.getLevel().equals("4")){
+                holder.Img_Level1.setVisibility(View.VISIBLE);
+                holder.Img_Level2.setVisibility(View.VISIBLE);
+                holder.Img_Level3.setVisibility(View.VISIBLE);
+                holder.Img_Level4.setVisibility(View.VISIBLE);
+                holder.Img_Level5.setVisibility(View.GONE);
+            }
+            else if(items.getLevel().equals("5")){
+                holder.Img_Level1.setVisibility(View.VISIBLE);
+                holder.Img_Level2.setVisibility(View.VISIBLE);
+                holder.Img_Level3.setVisibility(View.VISIBLE);
+                holder.Img_Level4.setVisibility(View.VISIBLE);
+                holder.Img_Level5.setVisibility(View.VISIBLE);
+            }
         } catch (Exception e){
 
         }
@@ -63,13 +103,20 @@ public class Tab2_Focus_Theme_Adapter extends RecyclerView.Adapter<Tab2_Focus_Th
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         LinearLayout Layout_Root;
         ImageView Img_Img;
-        TextView Txt_Title, Txt_Category;
+        TextView Txt_Title, Txt_Category, Txt_Grade;
+        ImageView Img_Level1, Img_Level2,Img_Level3, Img_Level4, Img_Level5;
         public ViewHolder(final View itemView) {
             super(itemView);
             Layout_Root = (LinearLayout)itemView.findViewById(R.id.layout_root);
             Img_Img = (ImageView)itemView.findViewById(R.id.img_theme);
             Txt_Title = (TextView)itemView.findViewById(R.id.txt_title);
             Txt_Category = (TextView)itemView.findViewById(R.id.txt_category);
+            Txt_Grade = (TextView)itemView.findViewById(R.id.txt_grade);
+            Img_Level1 = (ImageView)itemView.findViewById(R.id.img_level1);
+            Img_Level2 = (ImageView)itemView.findViewById(R.id.img_level2);
+            Img_Level3 = (ImageView)itemView.findViewById(R.id.img_level3);
+            Img_Level4 = (ImageView)itemView.findViewById(R.id.img_level4);
+            Img_Level5 = (ImageView)itemView.findViewById(R.id.img_level5);
             itemView.setOnClickListener(this);
         }
 

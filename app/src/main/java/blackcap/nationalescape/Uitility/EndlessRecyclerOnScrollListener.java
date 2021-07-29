@@ -1,6 +1,6 @@
 package blackcap.nationalescape.Uitility;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by 박효근 on 2018-05-23.

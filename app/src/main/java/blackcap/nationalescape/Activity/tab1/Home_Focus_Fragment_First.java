@@ -1,12 +1,13 @@
 package blackcap.nationalescape.Activity.tab1;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -69,83 +70,6 @@ public class Home_Focus_Fragment_First extends Fragment {
         }
     }
     public void Rating_Range(double Rating){
-//        if(Rating >= 0 && Rating < 0.5){
-//            Img_star1.setBackground(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star2.setBackground(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star3.setBackground(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star4.setBackground(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star5.setBackground(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 0.5 && Rating < 1){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star_half));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 1 && Rating < 1.5){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 1.5 && Rating < 2){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star_half));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 2 && Rating < 2.5){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 2.5 && Rating < 3){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star_half));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 3 && Rating < 3.5){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 3.5 && Rating < 4){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star_half));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 4 && Rating < 4.5){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
-//        }
-//        else if(Rating >= 4.5 && Rating < 5){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star_half));
-//        }
-//        else if(Rating == 5){
-//            Img_star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star3.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star4.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//            Img_star5.setImageDrawable(getResources().getDrawable(R.drawable.star));
-//        }
         StartRange startRange = new StartRange();
         startRange.rangestart(getActivity(), Rating, Img_star1, Img_star2, Img_star3, Img_star4, Img_star5);
     }

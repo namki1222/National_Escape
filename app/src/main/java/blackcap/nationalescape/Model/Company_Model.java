@@ -11,7 +11,8 @@ public class Company_Model {
     private String Address;
     private String Distance;
     private String Favorite;
-    public Company_Model(android.app.Activity activity, String company_pk, String owner_pk, String title, String intro, String grade_avg, String recommend_count, String address, String distance, String favorite){
+    private String Flag_Premium;
+    public Company_Model(android.app.Activity activity, String company_pk, String owner_pk, String title, String intro, String grade_avg, String recommend_count, String address, String distance, String favorite, String flag_Premium){
         this.Activity = activity;
         this.Company_Pk = company_pk;
         this.Owner_Pk = owner_pk;
@@ -22,6 +23,7 @@ public class Company_Model {
         this.Address = address;
         this.Distance = distance;
         this.Favorite = favorite;
+        this.Flag_Premium = flag_Premium;
     }
     public android.app.Activity getActivity(){return Activity;}
     public String getCompany_Pk(){return Company_Pk;}
@@ -39,4 +41,7 @@ public class Company_Model {
     public String getAddress(){return Address;}
     public String getDistance(){return Distance;}
     public String getFavorite(){return Favorite;}
+    public String getFlag_Premium(){
+        return Flag_Premium;
+    }
 }

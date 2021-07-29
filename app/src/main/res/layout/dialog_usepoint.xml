@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="295dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_mypoint"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/point3"
+        android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="현장 직원에게 보여주세요!"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+            android:includeFontPadding="false"
+            android:text="업체코드 입력"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/line">
+
+            <EditText
+                android:id="@+id/edit_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:background="@color/white"
+                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                android:hint="업체 코드를 입력하세요.
+현장에서 직원이 직접 입력 후 사용 가능"
+                android:includeFontPadding="false"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+            android:includeFontPadding="false"
+            android:text="포인트 사용"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/line">
+
+            <EditText
+                android:id="@+id/edit_point"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:background="@color/white"
+                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                android:hint="사용할 포인트를 입력하세요.
+1,000P 단위로 사용가능합니다."
+                android:includeFontPadding="false"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:inputType="number"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="취소"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/line" />
+
+        <TextView
+            android:id="@+id/txt_ok"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="확인"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

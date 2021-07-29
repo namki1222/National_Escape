@@ -19,7 +19,7 @@
             android:fontFamily="@font/notosanscjkkr_bold_cus"
             android:includeFontPadding="false"
             android:letterSpacing="0.1"
-            android:text="테스트"
+            android:text=""
             android:textColor="@color/gray"
             android:textSize="12sp" />
 
@@ -44,7 +44,7 @@
             android:fontFamily="@font/notosanscjkkr_bold_cus"
             android:includeFontPadding="false"
             android:letterSpacing="0.1"
-            android:text="22.500원"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="12sp" />
     </LinearLayout>

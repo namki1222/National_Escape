@@ -4,11 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/window_background"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center"
-        android:background="@color/point">
+        android:background="@color/point"
+        android:gravity="center">
 
         <ImageView
             android:layout_width="120dp"
@@ -16,7 +17,8 @@
             android:adjustViewBounds="true"
             android:src="@drawable/tab_toolbar" />
     </LinearLayout>
-    <android.support.v4.widget.NestedScrollView
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -67,7 +69,7 @@
                     android:textColor="@color/white"
                     android:textSize="13sp" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_company"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -75,7 +77,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:clipToPadding="false"
-                    android:paddingRight="50dp"></android.support.v7.widget.RecyclerView>
+                    android:paddingRight="50dp"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
 
             <LinearLayout
@@ -98,17 +100,17 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/notosanscjkkr_medium_cus"
                     android:includeFontPadding="false"
-                    android:text="신규 테마"
+                    android:text="NEW THEME &amp; Ad"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_theme"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginTop="10dp"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
 
             <LinearLayout
@@ -117,6 +119,71 @@
                 android:background="@color/line"
                 android:gravity="center"></LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#2b2b2b"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/notosanscjkkr_medium_cus"
+                    android:includeFontPadding="false"
+                    android:text="COMMUNITY"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_white"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosanscjkkr_medium_cus"
+                            android:includeFontPadding="false"
+                            android:text="최근 게시물"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/txt_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:includeFontPadding="false"
+                            android:text="더보기"
+                            android:textColor="#6a6a6a"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:background="@color/line_gray"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"></TextView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_comu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"></androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

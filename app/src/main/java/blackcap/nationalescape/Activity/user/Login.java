@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -22,13 +22,15 @@ import blackcap.nationalescape.Activity.MainActivity;
 import blackcap.nationalescape.R;
 import blackcap.nationalescape.Uitility.HttpClient;
 
+import static blackcap.nationalescape.Activity.MainActivity.act_main;
+
 public class Login extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
     ImageView Img_Back, Img_Login;
     EditText Edit_Email, Edit_Pass;
-    TextView Txt_Passchange;
+    TextView Txt_Passchange, Txt_Findid;
     LinearLayout Layout_Join;
     public static String Review_User_Pk = "", Review_Goods_Pk = "";
     @Override
@@ -51,6 +53,7 @@ public class Login extends AppCompatActivity {
         Edit_Email = (EditText)findViewById(R.id.edit_email);
         Edit_Pass = (EditText)findViewById(R.id.edit_pass);
         Txt_Passchange = (TextView)findViewById(R.id.txt_passchange);
+        Txt_Findid = (TextView)findViewById(R.id.txt_findid);
         Layout_Join =(LinearLayout)findViewById(R.id.layout_join);
     }
     private void setLogin(){
@@ -59,7 +62,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String[][] parsedData;
                 HttpClient http_login = new HttpClient();
-                String result = http_login.HttpClient("Web_Escape", "Login.jsp", Edit_Email.getText().toString(), Edit_Pass.getText().toString());
+                String result = http_login.HttpClient("Web_Escape", "Login_test.jsp", Edit_Email.getText().toString().trim(), Edit_Pass.getText().toString());
                 parsedData = jsonParserList(result);
                 Log.i("테스트", result);
                 if (parsedData[0][0].equals("failed")) {
@@ -88,6 +91,14 @@ public class Login extends AppCompatActivity {
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
+        Txt_Findid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, Login_Findid.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
     }
     public String[][] jsonParserList(String pRecvServerPage) {
         Log.i("서버에서 받은 전체 내용", pRecvServerPage);
@@ -112,7 +123,7 @@ public class Login extends AppCompatActivity {
         Layout_Join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Login_Join1.class);
+                Intent intent = new Intent(Login.this, Login_Join0.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }

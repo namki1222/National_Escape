@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/point">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:padding="17dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/notosanscjkkr_medium_cus"
+            android:text="포인트 내역"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/notosanscjkkr_demilight_cus"
+            android:includeFontPadding="false"
+            android:text="방탈출 포인트"
+            android:textColor="#93959a"
+            android:textSize="12sp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/txt_mypoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/notosanscjkkr_demilight_cus"
+            android:includeFontPadding="false"
+            android:text="loading"
+            android:textColor="#ffff"
+            android:textSize="34sp" />
+
+        <ImageView
+            android:id="@+id/img_usepoint"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/user_pointlist_usepoint" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+            android:gravity="bottom"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:text="최근적립내역"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_date_left"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:src="@drawable/user_pointlist_left" />
+
+            <TextView
+                android:id="@+id/txt_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                android:gravity="center"
+                android:text="0000년 00월"
+                android:textColor="#7c7c7a"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/img_date_right"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:src="@drawable/user_pointlist_right" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_pointlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"></androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>

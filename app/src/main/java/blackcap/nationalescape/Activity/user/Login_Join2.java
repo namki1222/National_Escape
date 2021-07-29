@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,7 +22,6 @@ public class Login_Join2 extends AppCompatActivity {
     EditText Edit_Email, Edit_NickName, EditPass, EditPassCheck;
     TextView Txt_Warning_Email, Txt_Warning_Nick, Txt_Warning_Pass, Txt_Warning_PassCheck;
     ImageView Img_Join;
-    ImageView Img_Exp1, Img_Exp2, Img_Exp3, Img_Exp4, Img_Exp5, Img_Exp6;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -55,100 +54,6 @@ public class Login_Join2 extends AppCompatActivity {
         Txt_Warning_PassCheck = (TextView)findViewById(R.id.txt_warning_passcheck);
         Img_Join = (ImageView)findViewById(R.id.img_join);
 
-        Img_Exp1 = (ImageView)findViewById(R.id.img_exp1);
-        Img_Exp1.setImageResource(R.drawable.user_join_exp1_click);
-        Img_Exp2 = (ImageView)findViewById(R.id.img_exp2);
-        Img_Exp3 = (ImageView)findViewById(R.id.img_exp3);
-        Img_Exp4 = (ImageView)findViewById(R.id.img_exp4);
-        Img_Exp5 = (ImageView)findViewById(R.id.img_exp5);
-        Img_Exp6 = (ImageView)findViewById(R.id.img_exp6);
-
-        setImg_exp_clickEvent();
-    }
-    public void setImg_exp_clickEvent(){
-        Img_Exp1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Img_Exp1.setImageResource(R.drawable.user_join_exp1_click);
-                Img_Exp2.setImageResource(R.drawable.user_join_exp2);
-                Img_Exp3.setImageResource(R.drawable.user_join_exp3);
-                Img_Exp4.setImageResource(R.drawable.user_join_exp4);
-                Img_Exp5.setImageResource(R.drawable.user_join_exp5);
-                Img_Exp6.setImageResource(R.drawable.user_join_exp6);
-
-                str_exp = "1";
-            }
-        });
-
-        Img_Exp2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Img_Exp1.setImageResource(R.drawable.user_join_exp1);
-                Img_Exp2.setImageResource(R.drawable.user_join_exp2_click);
-                Img_Exp3.setImageResource(R.drawable.user_join_exp3);
-                Img_Exp4.setImageResource(R.drawable.user_join_exp4);
-                Img_Exp5.setImageResource(R.drawable.user_join_exp5);
-                Img_Exp6.setImageResource(R.drawable.user_join_exp6);
-
-                str_exp = "2";
-            }
-        });
-
-        Img_Exp3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Img_Exp1.setImageResource(R.drawable.user_join_exp1);
-                Img_Exp2.setImageResource(R.drawable.user_join_exp2);
-                Img_Exp3.setImageResource(R.drawable.user_join_exp3_click);
-                Img_Exp4.setImageResource(R.drawable.user_join_exp4);
-                Img_Exp5.setImageResource(R.drawable.user_join_exp5);
-                Img_Exp6.setImageResource(R.drawable.user_join_exp6);
-
-                str_exp = "3";
-            }
-        });
-
-        Img_Exp4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Img_Exp1.setImageResource(R.drawable.user_join_exp1);
-                Img_Exp2.setImageResource(R.drawable.user_join_exp2);
-                Img_Exp3.setImageResource(R.drawable.user_join_exp3);
-                Img_Exp4.setImageResource(R.drawable.user_join_exp4_click);
-                Img_Exp5.setImageResource(R.drawable.user_join_exp5);
-                Img_Exp6.setImageResource(R.drawable.user_join_exp6);
-
-                str_exp = "4";
-            }
-        });
-
-        Img_Exp5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Img_Exp1.setImageResource(R.drawable.user_join_exp1);
-                Img_Exp2.setImageResource(R.drawable.user_join_exp2);
-                Img_Exp3.setImageResource(R.drawable.user_join_exp3);
-                Img_Exp4.setImageResource(R.drawable.user_join_exp4);
-                Img_Exp5.setImageResource(R.drawable.user_join_exp5_click);
-                Img_Exp6.setImageResource(R.drawable.user_join_exp6);
-
-                str_exp = "5";
-            }
-        });
-
-        Img_Exp6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Img_Exp1.setImageResource(R.drawable.user_join_exp1);
-                Img_Exp2.setImageResource(R.drawable.user_join_exp2);
-                Img_Exp3.setImageResource(R.drawable.user_join_exp3);
-                Img_Exp4.setImageResource(R.drawable.user_join_exp4);
-                Img_Exp5.setImageResource(R.drawable.user_join_exp5);
-                Img_Exp6.setImageResource(R.drawable.user_join_exp6_click);
-
-                str_exp = "6";
-            }
-        });
     }
     public void setBtnNext() {
         Img_Join.setOnClickListener(new View.OnClickListener() {
@@ -174,28 +79,38 @@ public class Login_Join2 extends AppCompatActivity {
                         Txt_Warning_Nick.setText("닉네임을 입력해주세요");
                     }
                     else{
-                        //비밀번호 8자리 확인
-                        if(EditPass.getText().toString().length() < 8){
+                        if(Edit_NickName.getText().toString().length() >= 20){
                             Txt_Warning_Email.setVisibility(View.INVISIBLE);
-                            Txt_Warning_Nick.setVisibility(View.INVISIBLE);
-                            Txt_Warning_Pass.setVisibility(View.VISIBLE);
+                            Txt_Warning_Nick.setVisibility(View.VISIBLE);
+                            Txt_Warning_Pass.setVisibility(View.INVISIBLE);
                             Txt_Warning_PassCheck.setVisibility(View.INVISIBLE);
 
-                            Txt_Warning_Pass.setText("8자리 이상 입력해주세요");
+                            Txt_Warning_Nick.setText("닉네임은 최대 20자입니다.");
                         }
                         else{
-                            //비밀번호 체크 완료
-                            if(!EditPass.getText().toString().equals(EditPassCheck.getText().toString())){
+                            //비밀번호 8자리 확인
+                            if(EditPass.getText().toString().length() < 8){
                                 Txt_Warning_Email.setVisibility(View.INVISIBLE);
                                 Txt_Warning_Nick.setVisibility(View.INVISIBLE);
-                                Txt_Warning_Pass.setVisibility(View.INVISIBLE);
-                                Txt_Warning_PassCheck.setVisibility(View.VISIBLE);
+                                Txt_Warning_Pass.setVisibility(View.VISIBLE);
+                                Txt_Warning_PassCheck.setVisibility(View.INVISIBLE);
 
-                                Txt_Warning_PassCheck.setText("비밀번호가 일치하지 않습니다");
+                                Txt_Warning_Pass.setText("8자리 이상 입력해주세요");
                             }
                             else{
-                                Async_Join async_join = new Async_Join();
-                                async_join.execute(str_phone, Edit_Email.getText().toString(), Edit_NickName.getText().toString(), EditPass.getText().toString(), str_exp);
+                                //비밀번호 체크 완료
+                                if(!EditPass.getText().toString().equals(EditPassCheck.getText().toString())){
+                                    Txt_Warning_Email.setVisibility(View.INVISIBLE);
+                                    Txt_Warning_Nick.setVisibility(View.INVISIBLE);
+                                    Txt_Warning_Pass.setVisibility(View.INVISIBLE);
+                                    Txt_Warning_PassCheck.setVisibility(View.VISIBLE);
+
+                                    Txt_Warning_PassCheck.setText("비밀번호가 일치하지 않습니다");
+                                }
+                                else{
+                                    Async_Join async_join = new Async_Join();
+                                    async_join.execute(str_phone, Edit_Email.getText().toString().trim(), Edit_NickName.getText().toString(), EditPass.getText().toString(), str_exp);
+                                }
                             }
                         }
                     }
@@ -220,7 +135,7 @@ public class Login_Join2 extends AppCompatActivity {
             try {
                 //프리뷰 이미지 로드
                 HttpClient http = new HttpClient();
-                responsed = http.HttpClient("Web_Escape", "Join_Basic_v2.jsp", params);
+                responsed = http.HttpClient("Web_Escape", "Join_Basic_v4_and.jsp", params);
                 return "succed";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -286,4 +201,5 @@ public class Login_Join2 extends AppCompatActivity {
         overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
         super.onBackPressed();
     }
+
 }

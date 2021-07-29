@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
@@ -7,14 +7,13 @@
     android:fitsSystemWindows="false"
     android:background="@color/white">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -150,6 +149,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
                                 android:orientation="horizontal">
 
                                 <ImageView
@@ -193,6 +193,18 @@
                                     android:src="@drawable/theme_level_yellow" />
 
                             </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/txt_deadtime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                                android:includeFontPadding="false"
+                                android:text="제한시간 : 60분"
+                                android:textColor="@color/white"
+                                android:textSize="10sp" />
+
                         </LinearLayout>
 
                         <TextView
@@ -284,8 +296,7 @@
 
                 </FrameLayout>
             </FrameLayout>
-
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -315,11 +326,11 @@
                         android:textSize="16sp" />
 
                 </RelativeLayout>
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/activity_tab3_focus_scroll" />
     <LinearLayout
@@ -344,5 +355,23 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_book"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#ffc500"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                android:text="예약하기"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

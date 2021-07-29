@@ -3,18 +3,22 @@ package blackcap.nationalescape.Activity.tab4;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import blackcap.nationalescape.Activity.tab3.Theme_Focus;
 import blackcap.nationalescape.Adapter.Tab3_Theme_Adapter;
 import blackcap.nationalescape.Model.Theme_Model;
 import blackcap.nationalescape.R;
+import blackcap.nationalescape.Uitility.GpsInfo;
 import blackcap.nationalescape.Uitility.HttpClient;
 import blackcap.nationalescape.Uitility.JsonParserList;
 import blackcap.nationalescape.Uitility.Progressbar_wheel;
@@ -29,7 +33,8 @@ public class Theme_Favority extends AppCompatActivity {
     private ArrayList<Theme_Model> theme_models;
     private Tab3_Theme_Adapter tab0_theme_adapter;
     private RecyclerView List_Favorite;
-    private String User_Pk = "";
+    private GpsInfo gps;
+    private String User_Pk = "";  String gps_x = "", gps_y = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,8 @@ public class Theme_Favority extends AppCompatActivity {
 
         img_login = (ImageView)findViewById(R.id.img_login);
         List_Favorite = (RecyclerView)findViewById(R.id.list_favorite);
+
+        gps = new GpsInfo(Theme_Favority.this);
     }
 
     @Override
@@ -77,12 +84,22 @@ public class Theme_Favority extends AppCompatActivity {
         protected String doInBackground(String... params) {
             //현재 좌표 받아오기
             try {
+                if (gps.isGetLocation()) {
+                    gps_x = Double.toString(gps.getLatitude());
+                    gps_y = Double.toString(gps.getLongitude());
+                } else {
+                    // GPS 를 사용할수 없으므로
+                    //gps.showSettingsAlert();
+                    gps_x = 37.497942+"";
+                    gps_y = 127.0254323+"";
+                }
+
                 //홈 업체 리스트 데이터 셋팅
                 HttpClient http = new HttpClient();
                 JsonParserList jsonParserList = new JsonParserList();
 
-                String result_theme = http.HttpClient("Web_Escape", "Theme_Favority_List.jsp", User_Pk);
-                parseredData_theme = jsonParserList.jsonParserList_Data11(result_theme);
+                String result_theme = http.HttpClient("Web_Escape", "Theme_Favority_List_v2.jsp", User_Pk, gps_x, gps_y);
+                parseredData_theme = jsonParserList.jsonParserList_Data12(result_theme);
 
                 theme_models = new ArrayList<Theme_Model>();
                 for (int i = 0; i < parseredData_theme.length; i++) {
@@ -97,11 +114,13 @@ public class Theme_Favority extends AppCompatActivity {
                     String person = parseredData_theme[i][8];
                     String tool = parseredData_theme[i][9];
                     String activity = parseredData_theme[i][10];
-                    theme_models.add(new Theme_Model(Theme_Favority.this,theme_pk, company_pk, img, title, intro, category, grade, level, person, tool, activity));
+                    String deadtime = parseredData_theme[i][11];
+                    theme_models.add(new Theme_Model(Theme_Favority.this,theme_pk, company_pk, img, title, intro, category, grade, level, person, tool, activity, deadtime));
                 }
                 return "succed";
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.i("테스트", e+"");
                 return "failed";
             }
         }

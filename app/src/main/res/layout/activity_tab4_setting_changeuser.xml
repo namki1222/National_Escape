@@ -103,53 +103,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/notosanscjkkr_medium_cus"
-                android:gravity="center"
-                android:text="비밀번호"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="7dp"
-                android:layout_weight="1"
-                android:background="@color/line_homefocus">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/edit_pass"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@null"
-                        android:fontFamily="@font/notosansmonocjkkr_regular_cus"
-                        android:text="닉네임"
-                        android:textColor="@color/black"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -177,7 +178,10 @@ public class Company_Favorite extends AppCompatActivity {
                     // GPS 를 사용할수 없으므로
                     gps.showSettingsAlert();
                 }
-
+                Log.i("테스", User_Pk);
+                Log.i("테스", gps_x);
+                Log.i("테스", gps_y);
+                Log.i("테스", filter);
                 //찜한 업체 리스트 데이터 셋팅
                 HttpClient http = new HttpClient();
                 String result = http.HttpClient("Web_Escape", "Favority_List.jsp", gps_x, gps_y, User_Pk, filter);

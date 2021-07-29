@@ -2,7 +2,6 @@ package blackcap.nationalescape.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -198,6 +199,8 @@ public class Tab3_Theme_Adapter extends RecyclerView.Adapter<Tab3_Theme_Adapter.
                 Glide.with(items.getActivity()).load(R.drawable.theme_tool_both)
                         .into(holder.Img_Tool);
             }
+
+            holder.Txt_DeadTime.setText("제한시간 : "+items.getDeadtime()+"분");
         } catch (Exception e){
 
         }
@@ -211,7 +214,7 @@ public class Tab3_Theme_Adapter extends RecyclerView.Adapter<Tab3_Theme_Adapter.
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         LinearLayout Layout_Root;
         ImageView Img_Img, Img_Br;
-        TextView Txt_Title, Txt_Category, Txt_Intro, Txt_GradeAvg;
+        TextView Txt_Title, Txt_Category, Txt_Intro, Txt_GradeAvg, Txt_DeadTime;
         ImageView Img_Key1, Img_Key2, Img_Key3, Img_Key4, Img_Key5;
         ImageView Img_Person1, Img_Person2, Img_Person3;
         ImageView Img_Activity, Img_Tool;
@@ -234,6 +237,7 @@ public class Tab3_Theme_Adapter extends RecyclerView.Adapter<Tab3_Theme_Adapter.
             Img_Person3 = (ImageView)itemView.findViewById(R.id.img_person3);
             Img_Activity = (ImageView)itemView.findViewById(R.id.img_activity);
             Img_Tool = (ImageView)itemView.findViewById(R.id.img_tool);
+            Txt_DeadTime = (TextView)itemView.findViewById(R.id.txt_deadtime);
             itemView.setOnClickListener(this);
         }
 

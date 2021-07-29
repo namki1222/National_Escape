@@ -22,4 +22,16 @@
     <color name = "gray">#858585</color>
 
     <color name = "line_gold">#fce977</color>
+    <color name = "line_gray">#ededed</color>
+    <color name = "point_add">#7490f6</color>
+    <color name = "point_use">#f7848e</color>
+    <!-- Calendar-->
+
+
+    <color name="default_todayCircleColor">#f6a92d</color>
+    <color name="default_eventCircleColor">@color/colorAccent</color>
+    <color name="default_backgroundColor">#fffafafa</color>
+
+    <color name="app_color">#f6a92d</color>
+    <color name="app_sub_color">#ebebeb</color>
 </resources>

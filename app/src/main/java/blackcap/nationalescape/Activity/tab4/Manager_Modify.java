@@ -16,9 +16,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -68,8 +68,9 @@ public class Manager_Modify extends AppCompatActivity {
     private ImageView Img_Main, Img_Main_Cancel;
 
     private Button Btn_Extrapicture_Add;
-    private ImageView Img_Sub1, Img_Sub2, Img_Sub3, Img_Sub4, Img_Sub5, Img_Sub6;
+    private ImageView Img_Sub1, Img_Sub2, Img_Sub3, Img_Sub4, Img_Sub5, Img_Sub6, Img_Sub7, Img_Sub8, Img_Sub9,Img_Sub10;
     private ImageView Img_Sub1_Cancel, Img_Sub2_Cancel, Img_Sub3_Cancel, Img_Sub4_Cancel, Img_Sub5_Cancel, Img_Sub6_Cancel;
+    private ImageView Img_Sub7_Cancel, Img_Sub8_Cancel, Img_Sub9_Cancel, Img_Sub10_Cancel;
 
     private Button Btn_Next;
 
@@ -158,6 +159,10 @@ public class Manager_Modify extends AppCompatActivity {
         Img_Sub4 = (ImageView)findViewById(R.id.img_sub4);Img_Sub4.setVisibility(View.GONE);
         Img_Sub5 = (ImageView)findViewById(R.id.img_sub5);Img_Sub5.setVisibility(View.GONE);
         Img_Sub6 = (ImageView)findViewById(R.id.img_sub6);Img_Sub6.setVisibility(View.GONE);
+        Img_Sub7 = (ImageView)findViewById(R.id.img_sub7);Img_Sub7.setVisibility(View.GONE);
+        Img_Sub8 = (ImageView)findViewById(R.id.img_sub8);Img_Sub8.setVisibility(View.GONE);
+        Img_Sub9 = (ImageView)findViewById(R.id.img_sub9);Img_Sub9.setVisibility(View.GONE);
+        Img_Sub10 = (ImageView)findViewById(R.id.img_sub10);Img_Sub10.setVisibility(View.GONE);
 
         Img_Sub1_Cancel = (ImageView)findViewById(R.id.img_sub1_cancel);Img_Sub1_Cancel.setVisibility(View.GONE);
         Img_Sub2_Cancel = (ImageView)findViewById(R.id.img_sub2_cancel);Img_Sub2_Cancel.setVisibility(View.GONE);
@@ -165,6 +170,11 @@ public class Manager_Modify extends AppCompatActivity {
         Img_Sub4_Cancel = (ImageView)findViewById(R.id.img_sub4_cancel);Img_Sub4_Cancel.setVisibility(View.GONE);
         Img_Sub5_Cancel = (ImageView)findViewById(R.id.img_sub5_cancel);Img_Sub5_Cancel.setVisibility(View.GONE);
         Img_Sub6_Cancel = (ImageView)findViewById(R.id.img_sub6_cancel);Img_Sub6_Cancel.setVisibility(View.GONE);
+        Img_Sub7_Cancel = (ImageView)findViewById(R.id.img_sub7_cancel);Img_Sub7_Cancel.setVisibility(View.GONE);
+        Img_Sub8_Cancel = (ImageView)findViewById(R.id.img_sub8_cancel);Img_Sub8_Cancel.setVisibility(View.GONE);
+        Img_Sub9_Cancel = (ImageView)findViewById(R.id.img_sub9_cancel);Img_Sub9_Cancel.setVisibility(View.GONE);
+        Img_Sub10_Cancel = (ImageView)findViewById(R.id.img_sub10_cancel);Img_Sub10_Cancel.setVisibility(View.GONE);
+
 
         Btn_Next = (Button)findViewById(R.id.btn_next);
 
@@ -463,6 +473,34 @@ public class Manager_Modify extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 manager_img_models.remove(6);
+                setSideImage_Relocation();
+            }
+        });
+        Img_Sub7_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manager_img_models.remove(7);
+                setSideImage_Relocation();
+            }
+        });
+        Img_Sub8_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manager_img_models.remove(8);
+                setSideImage_Relocation();
+            }
+        });
+        Img_Sub9_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manager_img_models.remove(9);
+                setSideImage_Relocation();
+            }
+        });
+        Img_Sub10_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manager_img_models.remove(10);
                 setSideImage_Relocation();
             }
         });

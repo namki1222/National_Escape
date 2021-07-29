@@ -8,15 +8,11 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -24,6 +20,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -36,6 +41,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import blackcap.nationalescape.Activity.user.Login;
 import blackcap.nationalescape.Adapter.Price_Adapter;
@@ -51,6 +57,11 @@ import blackcap.nationalescape.Uitility.JsonParserList;
 import blackcap.nationalescape.Uitility.Progressbar_wheel;
 import blackcap.nationalescape.Uitility.StartRange;
 import blackcap.nationalescape.Uitility.ViewPager_Wrap;
+import me.drakeet.materialdialog.MaterialDialog;
+
+import static blackcap.nationalescape.Activity.Fragment_main4.setting_view;
+import static blackcap.nationalescape.Activity.MainActivity.bol_main;
+import static blackcap.nationalescape.Activity.MainActivity.mInterstitialAd;
 
 public class Home_Focus extends AppCompatActivity {
     SharedPreferences preferences; //캐쉬 데이터 생성
@@ -86,9 +97,16 @@ public class Home_Focus extends AppCompatActivity {
     private ViewGroup mapViewContainer;
     private TextView Txt_Review_Nickname, Txt_Review_Focus;
     private LinearLayout Layout_Call, Layout_Book;
+    private NestedScrollView Nes_Scroll;
 
-    private String str_phone = "";String str_bookpage = "";String str_homepage = "";
+    private String str_phone = "";String str_bookpage = "";String str_homepage = "", str_bookflag = "";
     private Async async;
+
+    private LinearLayoutManager layoutManager2;
+
+    private ImageView Img;
+    private ImageView Img_top_star1, Img_top_star2, Img_top_star3, Img_top_star4, Img_top_star5;
+    private TextView Txt_Title1, Txt_Distance, Txt_Intro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +146,17 @@ public class Home_Focus extends AppCompatActivity {
         str_intro = intent1.getStringExtra("Intro");
         str_address = intent1.getStringExtra("Address");
 
+        if(bol_main == false){
+            if(mInterstitialAd != null){
+                if(mInterstitialAd.isLoaded()){
+                    mInterstitialAd.show();
+                }
+                bol_main = true;
+            }
+        }
+
+        Nes_Scroll = (NestedScrollView)findViewById(R.id.scroll);
+
         Txt_Title = (TextView)findViewById(R.id.txt_title);
         Txt_Title.setText(str_title);
         Txt_IntroFocus = (TextView)findViewById(R.id.txt_introfocus);
@@ -155,11 +184,35 @@ public class Home_Focus extends AppCompatActivity {
         Txt_Review_Focus = (TextView) findViewById(R.id.txt_review_focus);
         Txt_Review_Write = (TextView) findViewById(R.id.txt_review_write);
         Edit_Review_Content = (EditText) findViewById(R.id.edit_review_content);
+        //Edit_Review_Content.setFilters(new InputFilter[]{specialCharacterFilter});
 
         Layout_Call = (LinearLayout)findViewById(R.id.layout_call);
         Layout_Book = (LinearLayout)findViewById(R.id.layout_book);
 
         List_Theme = (RecyclerView)findViewById(R.id.list_theme);
+
+        Txt_Title1 = (TextView) findViewById(R.id.txt_title1);
+        Txt_Distance = (TextView) findViewById(R.id.txt_distance);
+        Txt_Intro = (TextView) findViewById(R.id.txt_intro);
+
+        Img_top_star1 = (ImageView)findViewById(R.id.img_top_star1);
+        Img_top_star2 = (ImageView)findViewById(R.id.img_top_star2);
+        Img_top_star3 = (ImageView)findViewById(R.id.img_top_star3);
+        Img_top_star4 = (ImageView)findViewById(R.id.img_top_star4);
+        Img_top_star5 = (ImageView)findViewById(R.id.img_top_star5);
+
+        setScroll();
+    }
+
+    public void setScroll(){
+        Nes_Scroll.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                layoutManager2.setSmoothScrollbarEnabled(true);
+                List_Theme.dispatchTouchEvent(event);
+                return false;
+            }
+        });
     }
     public void setImg_Homepage(){
         Img_Homepage.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +248,7 @@ public class Home_Focus extends AppCompatActivity {
                 Img_ReviewWrite_Star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
                 Img_ReviewWrite_Star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
                 startcount = 5;
+
             }
         });
         Img_ReviewWrite_Star4.setOnClickListener(new View.OnClickListener() {
@@ -217,6 +271,7 @@ public class Home_Focus extends AppCompatActivity {
                 Img_ReviewWrite_Star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
                 Img_ReviewWrite_Star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
                 startcount = 3;
+                Log.i("테스트", "xxx");
             }
         });
         Img_ReviewWrite_Star2.setOnClickListener(new View.OnClickListener() {
@@ -228,6 +283,7 @@ public class Home_Focus extends AppCompatActivity {
                 Img_ReviewWrite_Star2.setImageDrawable(getResources().getDrawable(R.drawable.star));
                 Img_ReviewWrite_Star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
                 startcount = 2;
+                Log.i("테스트", "xxx");
             }
         });
         Img_ReviewWrite_Star1.setOnClickListener(new View.OnClickListener() {
@@ -239,6 +295,7 @@ public class Home_Focus extends AppCompatActivity {
                 Img_ReviewWrite_Star2.setImageDrawable(getResources().getDrawable(R.drawable.star_gray));
                 Img_ReviewWrite_Star1.setImageDrawable(getResources().getDrawable(R.drawable.star));
                 startcount = 1;
+                Log.i("테스트", "xxx");
             }
         });
     }
@@ -258,8 +315,16 @@ public class Home_Focus extends AppCompatActivity {
             public void onClick(View v) {
                 HttpClient http = new HttpClient();
                 http.HttpClient("Web_Escape", "Home_Focus_Visit.jsp",str_company_pk, "book", setNowTime());
-                Intent newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(str_bookpage));
-                startActivity(newIntent);
+                if(str_bookflag.equals("true")){
+                    Intent intent = new Intent(Home_Focus.this, Book_Chapter1.class);
+                    intent.putExtra("Company_Pk", str_company_pk);
+                    intent.putExtra("Company_Title", str_title);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                }
+                else{
+                    setDialog_check();
+                }
             }
         });
     }
@@ -291,6 +356,7 @@ public class Home_Focus extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Home_Focus.this, Home_Focus_Review.class);
                 intent.putExtra("Company_Pk", str_company_pk);
+                intent.putExtra("Company_Title", str_title);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
@@ -313,7 +379,7 @@ public class Home_Focus extends AppCompatActivity {
             try {
                 //공지사항 리스트 데이터 셋팅
                 HttpClient http = new HttpClient();
-                http_result = http.HttpClient("Web_Escape", "Home_Focus_Review_Write.jsp",params);
+                http_result = http.HttpClient("Web_Escape", "Home_Focus_Review_Write_v3.jsp",params);
                 Log.i("테스트", http_result);
                 return "succed";
             } catch (Exception e) {
@@ -326,7 +392,8 @@ public class Home_Focus extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(http_result.equals("succed")){
-                //
+                //셋팅화면 리프레쉬
+                setting_view = false;
                 Toast.makeText(Home_Focus.this, "리뷰가 작성되었습니다", Toast.LENGTH_SHORT).show();
                 Edit_Review_Content.setText("");
                 //리뷰 3개 데이터 리셋팅
@@ -365,8 +432,8 @@ public class Home_Focus extends AppCompatActivity {
                 String result1 = http.HttpClient("Web_Escape", "Home_Focus_Extradate.jsp",params);
                 parseredData_extra = jsonParserList_Extra(result1);
 
-                String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3.jsp",params);
-                parseredData_reivew = jsonParserList.jsonParserList_Data5(result3);
+                String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3_v2.jsp",params);
+                parseredData_reivew = jsonParserList.jsonParserList_Data8(result3);
 
 
                 review_models = new ArrayList<Review_Model>();
@@ -376,7 +443,10 @@ public class Home_Focus extends AppCompatActivity {
                     String content = parseredData_reivew[i][2];
                     String date = parseredData_reivew[i][3];
                     String review_user_pk = parseredData_reivew[i][4];
-                    review_models.add(new Review_Model(Home_Focus.this, User_Pk, review_user_pk, nickname, grage, content, date, str_company_pk));
+                    String bol_owner = parseredData_reivew[i][5];
+                    String owner_date = parseredData_reivew[i][6];
+                    String owner_memo = parseredData_reivew[i][7];
+                    review_models.add(new Review_Model(Home_Focus.this, User_Pk, review_user_pk, nickname, grage, content, date, str_company_pk, bol_owner, str_title, owner_date, owner_memo));
                 }
                 str_grade_avg = parseredData_extra[0][3];
                 return "succed";
@@ -438,15 +508,15 @@ public class Home_Focus extends AppCompatActivity {
                 String result2 = http.HttpClient("Web_Escape", "Home_Focus_Price.jsp",params);
                 parseredData_price = jsonParserList_price(result2);
 
-                String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3.jsp",params[0], User_Pk);
-                parseredData_reivew = jsonParserList.jsonParserList_Data5(result3);
+                String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3_v2.jsp",params[0], User_Pk);
+                parseredData_reivew = jsonParserList.jsonParserList_Data8(result3);
 
-                String result4 = http.HttpClient("Web_Escape", "User.jsp",User_Pk);
+                String result4 = http.HttpClient("Web_Escape", "User_v3.jsp",User_Pk, "yologuys12");
                 parseredData_User = jsonParserList.jsonParserList_Data8(result4);
 
                 //테마 데이터 셋팅
                 String result_theme = http.HttpClient("Web_Escape", "Home_Focus_Theme.jsp", str_company_pk);
-                parseredData_theme = jsonParserList.jsonParserList_Data11(result_theme);
+                parseredData_theme = jsonParserList.jsonParserList_Data12(result_theme);
 
                 str_introfocus = parseredData_extra[0][0];
                 str_x = parseredData_extra[0][1];
@@ -454,6 +524,7 @@ public class Home_Focus extends AppCompatActivity {
                 str_phone = parseredData_extra[0][4];
                 str_bookpage = parseredData_extra[0][5];
                 str_homepage = parseredData_extra[0][6];
+                str_bookflag = parseredData_extra[0][7];
                 price_models = new ArrayList<Price_Model>();
                 for (int i = 0; i < parseredData_price.length; i++) {
                     String title = parseredData_price[i][0];
@@ -468,7 +539,10 @@ public class Home_Focus extends AppCompatActivity {
                     String content = parseredData_reivew[i][2];
                     String date = parseredData_reivew[i][3];
                     String review_user_pk = parseredData_reivew[i][4];
-                    review_models.add(new Review_Model(Home_Focus.this, User_Pk, review_user_pk, nickname, grage, content, date, str_company_pk));
+                    String bol_owner = parseredData_reivew[i][5];
+                    String owner_date = parseredData_reivew[i][6];
+                    String owner_memo = parseredData_reivew[i][7];
+                    review_models.add(new Review_Model(Home_Focus.this, User_Pk, review_user_pk, nickname, grage, content, date, str_company_pk, bol_owner, str_title, owner_date, owner_memo));
                 }
 
                 theme_models = new ArrayList<Theme_Model>();
@@ -484,7 +558,8 @@ public class Home_Focus extends AppCompatActivity {
                     String person = parseredData_theme[i][8];
                     String tool = parseredData_theme[i][9];
                     String activity = parseredData_theme[i][10];
-                    theme_models.add(new Theme_Model(Home_Focus.this,theme_pk, company_pk, img, title, intro, category, grade, level, person, tool, activity));
+                    String deadtime = parseredData_theme[i][11];
+                    theme_models.add(new Theme_Model(Home_Focus.this,theme_pk, company_pk, img, title, intro, category, grade, level, person, tool, activity, deadtime));
                 }
                 str_nickname = parseredData_User[0][2];
                 return "succed";
@@ -507,6 +582,11 @@ public class Home_Focus extends AppCompatActivity {
 
             //소개 셋팅
             Txt_IntroFocus.setText(str_introfocus);
+
+            Txt_Title1.setText(str_title);
+            Txt_Distance.setText(str_distance);
+            Txt_Intro.setText(str_intro);
+            Rating_Range(Double.parseDouble(str_grade_avg));
 
             //요금 셋팅
             LinearLayoutManager layoutManager = new LinearLayoutManager(Home_Focus.this);
@@ -531,7 +611,7 @@ public class Home_Focus extends AppCompatActivity {
             List_Review.setAdapter(review_adapter);
 
             //리스트 뷰 세로 방향으로
-            LinearLayoutManager layoutManager2 = new LinearLayoutManager(Home_Focus.this);
+            layoutManager2 = new LinearLayoutManager(Home_Focus.this);
             layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
             layoutManager2.scrollToPosition(0);
 
@@ -539,6 +619,7 @@ public class Home_Focus extends AppCompatActivity {
             tab2_focus_theme_adapter = new Tab2_Focus_Theme_Adapter(Home_Focus.this, theme_models);
             List_Theme.setLayoutManager(layoutManager2);
             List_Theme.setAdapter(tab2_focus_theme_adapter);
+
 
             progressDialog.dismiss();
         }
@@ -562,12 +643,16 @@ public class Home_Focus extends AppCompatActivity {
             return null;
         }
     }
+    public void Rating_Range(double Rating){
+        StartRange startRange = new StartRange();
+        startRange.rangestart(Home_Focus.this, Rating, Img_top_star1, Img_top_star2, Img_top_star3, Img_top_star4, Img_top_star5);
+    }
     public String[][] jsonParserList_Extra(String pRecvServerPage) {
         Log.i("서버에서 받은 전체 내용", pRecvServerPage);
         try {
             JSONObject json = new JSONObject(pRecvServerPage);
             JSONArray jArr = json.getJSONArray("List");
-            String[] jsonName = {"msg1", "msg2", "msg3", "msg4"};
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg8"};
             String[][] parseredData = new String[jArr.length()][jsonName.length];
             for (int i = 0; i < jArr.length(); i++) {
                 json = jArr.getJSONObject(i);
@@ -714,7 +799,7 @@ public class Home_Focus extends AppCompatActivity {
             Fragment f;
             //프래그 먼트 생성
             if(position == 0 ){
-                f = new Home_Focus_Fragment_First();
+                f = new Home_Focus_Fragment();
             }
             else{
                 f = new Home_Focus_Fragment();
@@ -815,6 +900,32 @@ public class Home_Focus extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
         return sdf.format(date)+"";
+    }
+    public void setDialog_check(){
+        LayoutInflater inflater = (LayoutInflater)Home_Focus.this.getSystemService(Home_Focus.LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.dialog_bookflag, (ViewGroup)findViewById(R.id.root));
+        final TextView Txt_Ok = (TextView) layout.findViewById(R.id.btn_ok);
+        final TextView Txt_Cancel = (TextView) layout.findViewById(R.id.btn_cancel);
+        final MaterialDialog TeamInfo_Dialog = new MaterialDialog(Home_Focus.this);
+        TeamInfo_Dialog
+                .setContentView(layout)
+                .setCanceledOnTouchOutside(true);
+        TeamInfo_Dialog.show();
+
+        Txt_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TeamInfo_Dialog.dismiss();
+            }
+        });
+        Txt_Ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(str_bookpage));
+                startActivity(newIntent);
+                TeamInfo_Dialog.dismiss();
+            }
+        });
     }
 }
 

@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +27,7 @@ import blackcap.nationalescape.Uitility.Progressbar_wheel;
 
 public class Home_Focus_Review extends AppCompatActivity {
     SharedPreferences preferences; //캐쉬 데이터 생성
-    private String User_Pk = "" ,str_company_pk = "";
+    private String User_Pk = "" ,str_company_pk = "", str_company_title = "";
 
     private ImageView Img_Back;
 
@@ -52,6 +53,7 @@ public class Home_Focus_Review extends AppCompatActivity {
 
         Intent intent1 = getIntent();
         str_company_pk = intent1.getStringExtra("Company_Pk");
+        str_company_title = intent1.getStringExtra("Company_Title");
 
         Img_Back = (ImageView)findViewById(R.id.img_back);
         List_Review = (RecyclerView)findViewById(R.id.list_review);
@@ -75,8 +77,8 @@ public class Home_Focus_Review extends AppCompatActivity {
                 //공지사항 리스트 데이터 셋팅
                 HttpClient http = new HttpClient();
                 JsonParserList jsonParserList = new JsonParserList();
-                String result = http.HttpClient("Web_Escape", "Home_Focus_Review_all.jsp",params);
-                parseredData_reivew = jsonParserList.jsonParserList_Data5(result);
+                String result = http.HttpClient("Web_Escape", "Home_Focus_Review_all_v2.jsp",params);
+                parseredData_reivew = jsonParserList.jsonParserList_Data8(result);
 
                 review_models = new ArrayList<Review_Model>();
                 for (int i = 0; i < parseredData_reivew.length; i++) {
@@ -85,7 +87,10 @@ public class Home_Focus_Review extends AppCompatActivity {
                     String content = parseredData_reivew[i][2];
                     String date = parseredData_reivew[i][3];
                     String review_user_pk = parseredData_reivew[i][4];
-                    review_models.add(new Review_Model(Home_Focus_Review.this, User_Pk, review_user_pk, nickname, grage, content, date, str_company_pk));
+                    String bol_owner = parseredData_reivew[i][5];
+                    String owner_date = parseredData_reivew[i][6];
+                    String owner_memo = parseredData_reivew[i][7];
+                    review_models.add(new Review_Model(Home_Focus_Review.this, User_Pk, review_user_pk, nickname, grage, content, date, str_company_pk, bol_owner, str_company_title, owner_date, owner_memo));
                 }
                 return "succed";
             } catch (Exception e) {

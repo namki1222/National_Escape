@@ -1,12 +1,13 @@
 package blackcap.nationalescape.Adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -18,6 +19,8 @@ import blackcap.nationalescape.Model.Location_Model;
 import blackcap.nationalescape.R;
 
 import static blackcap.nationalescape.Activity.Fragment_main2.List_Searchlist;
+import static blackcap.nationalescape.Activity.Fragment_main2.frag2_address_y;
+import static blackcap.nationalescape.Activity.Fragment_main2.frag2_address_x;
 
 public class Location_Adapter extends RecyclerView.Adapter<Location_Adapter.ViewHolder> {
     private Context context;
@@ -63,6 +66,8 @@ public class Location_Adapter extends RecyclerView.Adapter<Location_Adapter.View
             Txt_Title.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    frag2_address_x = arrData.get(getAdapterPosition()).getGps_x();
+                    frag2_address_y = arrData.get(getAdapterPosition()).getGps_y();
                     setMap(arrData.get(getAdapterPosition()).getGps_x(), arrData.get(getAdapterPosition()).getGps_y());
                     List_Searchlist.setVisibility(View.GONE);
                 }

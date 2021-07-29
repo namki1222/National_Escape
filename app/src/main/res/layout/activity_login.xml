@@ -99,17 +99,35 @@
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/txt_passchange"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="@font/notosanscjkkr_thin_cus"
-        android:includeFontPadding="false"
-        android:text="비밀번호를 잊으셨나요?"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:id="@+id/txt_findid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/notosanscjkkr_thin_cus"
+            android:includeFontPadding="false"
+            android:text="아이디 찾기"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txt_passchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/notosanscjkkr_thin_cus"
+            android:includeFontPadding="false"
+            android:text="비밀번호 찾기"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
 </RelativeLayout>

@@ -1,13 +1,16 @@
 package blackcap.nationalescape.Adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -73,6 +76,18 @@ public class Review_Adapter extends RecyclerView.Adapter<Review_Adapter.ViewHold
                     setDialog_Setting(items);
                 }
             });
+
+            //업체 답변
+            if(items.getBol_Owner().equals("true")){
+                holder.Layout_Owner.setVisibility(View.VISIBLE);
+                holder.Txt_Owner_Title.setText(items.getTitle());
+                holder.Txt_Owner_Date.setText(items.getOwner_Date());
+                holder.Txt_Owner_Memo.setText(items.getOwner_Memo());
+
+            }
+            else{
+                holder.Layout_Owner.setVisibility(View.GONE);
+            }
         } catch (Exception e){
 
         }
@@ -88,6 +103,10 @@ public class Review_Adapter extends RecyclerView.Adapter<Review_Adapter.ViewHold
         TextView Txt_Nickname, Txt_Date, Txt_Content;
         ImageView Img_Star1, Img_Star2, Img_Star3, Img_Star4, Img_Star5;
         ImageView Img_My, Img_Setting;
+
+        LinearLayout Layout_Owner;
+        TextView Txt_Owner_Title, Txt_Owner_Date, Txt_Owner_Memo;
+
         public ViewHolder(final View itemView) {
             super(itemView);
             Txt_Nickname = (TextView)itemView.findViewById(R.id.txt_nickname);
@@ -100,6 +119,11 @@ public class Review_Adapter extends RecyclerView.Adapter<Review_Adapter.ViewHold
             Img_Star5 = (ImageView) itemView.findViewById(R.id.img_star5);
             Img_My = (ImageView)itemView.findViewById(R.id.img_my);
             Img_Setting = (ImageView)itemView.findViewById(R.id.img_setting);
+
+            Layout_Owner = (LinearLayout)itemView.findViewById(R.id.layout_owner);
+            Txt_Owner_Title = (TextView)itemView.findViewById(R.id.txt_owner_title);
+            Txt_Owner_Date = (TextView)itemView.findViewById(R.id.txt_owner_date);
+            Txt_Owner_Memo = (TextView)itemView.findViewById(R.id.txt_owner_memo);
         }
     }
     public void setDialog_Setting(final Review_Model items){
@@ -117,10 +141,11 @@ public class Review_Adapter extends RecyclerView.Adapter<Review_Adapter.ViewHold
             public void onClick(View view) {
                 HttpClient http = new HttpClient();
                 JsonParserList jsonParserList = new JsonParserList();
-                String result = http.HttpClient("Web_Escape", "Home_Focus_Review_Delete.jsp",items.getCompany_Pk(), items.getUser_Pk());
+                String result = http.HttpClient("Web_Escape", "Home_Focus_Review_Delete_v2.jsp",items.getCompany_Pk(), items.getUser_Pk());
+                Log.i("테스트", result);
                 if(result.equals("succed")){
-                    String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3.jsp",items.getCompany_Pk(), items.getUser_Pk());
-                    String [][] parseredData_reivew = jsonParserList.jsonParserList_Data5(result3);
+                    String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3_v2.jsp",items.getCompany_Pk(), items.getUser_Pk());
+                    String [][] parseredData_reivew = jsonParserList.jsonParserList_Data8(result3);
                     review_models.clear();
                     for (int i = 0; i < parseredData_reivew.length; i++) {
                         String nickname = parseredData_reivew[i][0];
@@ -128,7 +153,10 @@ public class Review_Adapter extends RecyclerView.Adapter<Review_Adapter.ViewHold
                         String content = parseredData_reivew[i][2];
                         String date = parseredData_reivew[i][3];
                         String review_user_pk = parseredData_reivew[i][4];
-                        review_models.add(new Review_Model(items.getActivity(), items.getUser_Pk(), review_user_pk, nickname, grage, content, date, items.getCompany_Pk()));
+                        String bol_owner = parseredData_reivew[i][5];
+                        String owner_date = parseredData_reivew[i][6];
+                        String owner_memo = parseredData_reivew[i][7];
+                        review_models.add(new Review_Model(items.getActivity(), items.getUser_Pk(), review_user_pk, nickname, grage, content, date, items.getCompany_Pk(), bol_owner, items.getTitle(), owner_date, owner_memo));
                     }
                     review_adapter.notifyDataSetChanged();
 
@@ -147,10 +175,10 @@ public class Review_Adapter extends RecyclerView.Adapter<Review_Adapter.ViewHold
             public void onClick(View view) {
                 HttpClient http = new HttpClient();
                 JsonParserList jsonParserList = new JsonParserList();
-                String result = http.HttpClient("Web_Escape", "Home_Focus_Review_Delete.jsp",items.getCompany_Pk(), items.getUser_Pk());
+                String result = http.HttpClient("Web_Escape", "Home_Focus_Review_Delete_v2.jsp",items.getCompany_Pk(), items.getUser_Pk());
                 if(result.equals("succed")){
-                    String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3.jsp",items.getCompany_Pk(), items.getUser_Pk());
-                    String [][] parseredData_reivew = jsonParserList.jsonParserList_Data5(result3);
+                    String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3_v2.jsp",items.getCompany_Pk(), items.getUser_Pk());
+                    String [][] parseredData_reivew = jsonParserList.jsonParserList_Data8(result3);
                     review_models.clear();
                     for (int i = 0; i < parseredData_reivew.length; i++) {
                         String nickname = parseredData_reivew[i][0];
@@ -158,7 +186,10 @@ public class Review_Adapter extends RecyclerView.Adapter<Review_Adapter.ViewHold
                         String content = parseredData_reivew[i][2];
                         String date = parseredData_reivew[i][3];
                         String review_user_pk = parseredData_reivew[i][4];
-                        review_models.add(new Review_Model(items.getActivity(), items.getUser_Pk(), review_user_pk, nickname, grage, content, date, items.getCompany_Pk()));
+                        String bol_owner = parseredData_reivew[i][5];
+                        String owner_date = parseredData_reivew[i][6];
+                        String owner_memo = parseredData_reivew[i][7];
+                        review_models.add(new Review_Model(items.getActivity(), items.getUser_Pk(), review_user_pk, nickname, grage, content, date, items.getCompany_Pk(), bol_owner, items.getTitle(), owner_date, owner_memo));
                     }
                     review_adapter.notifyDataSetChanged();
                     Toast.makeText(items.getActivity(),"삭제되었습니다", Toast.LENGTH_SHORT).show();

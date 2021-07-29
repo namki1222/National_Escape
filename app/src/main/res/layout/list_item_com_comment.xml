@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/layout">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <ImageView
+            android:id="@+id/img_depth"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/img_grade"
+            android:layout_width="18dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/user_medal_1_10"
+            android:layout_marginRight="5dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/txt_nick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                android:text="s"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/notosanscjkkr_medium_cus"
+                android:text="s"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanscjkkr_medium_cus"
+                    android:text="20200101"
+                    android:textColor="@color/date_gray"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/txt_re"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/notosanscjkkr_medium_cus"
+                    android:text="답글달기"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/txt_del"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/notosanscjkkr_medium_cus"
+                    android:text="삭제하기"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

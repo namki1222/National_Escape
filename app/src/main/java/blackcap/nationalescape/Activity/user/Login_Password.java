@@ -2,7 +2,7 @@ package blackcap.nationalescape.Activity.user;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -122,7 +122,7 @@ public class Login_Password extends AppCompatActivity {
                     Toast.makeText(Login_Password.this, "인증 번호를 전송해주세요", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    if(Edit_Certi.getText().toString() != null){
+                    if(Edit_Certi.getText().toString() != null && !Edit_Certi.getText().toString().equals("")){
                         if(certi_num == Integer.parseInt(Edit_Certi.getText().toString())){
                             succed_flag = true;
                             Toast.makeText(Login_Password.this, "인증이 완료되었습니다", Toast.LENGTH_SHORT).show();

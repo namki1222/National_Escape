@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -94,7 +94,7 @@ public class Login_Password_Change extends AppCompatActivity {
             try {
                 //프리뷰 이미지 로드
                 HttpClient http = new HttpClient();
-                responsed = http.HttpClient("Web_Escape", "User_Modify_Pass.jsp", params);
+                responsed = http.HttpClient("Web_Escape", "User_Modify_Pass_v2.jsp", params);
                 return "succed";
             } catch (Exception e) {
                 e.printStackTrace();

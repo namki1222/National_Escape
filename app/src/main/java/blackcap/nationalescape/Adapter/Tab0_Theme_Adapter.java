@@ -2,13 +2,14 @@ package blackcap.nationalescape.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -23,6 +24,9 @@ import blackcap.nationalescape.Model.Company_Model;
 import blackcap.nationalescape.Model.Theme_Model;
 import blackcap.nationalescape.R;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
+import static blackcap.nationalescape.Activity.MainActivity.bol_main;
+import static blackcap.nationalescape.Activity.MainActivity.mInterstitialAd;
 
 public class Tab0_Theme_Adapter extends RecyclerView.Adapter<Tab0_Theme_Adapter.ViewHolder> {
     private Context context;
@@ -96,6 +100,8 @@ public class Tab0_Theme_Adapter extends RecyclerView.Adapter<Tab0_Theme_Adapter.
                 holder.Img_Key4.setVisibility(View.VISIBLE);
                 holder.Img_Key5.setVisibility(View.VISIBLE);
             }
+
+            holder.Txt_Deadtime.setText("제한시간 : "+items.getDeadtime()+"분");
         } catch (Exception e){
 
         }
@@ -109,7 +115,7 @@ public class Tab0_Theme_Adapter extends RecyclerView.Adapter<Tab0_Theme_Adapter.
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         LinearLayout Layout_Root;
         ImageView Img_Img, Img_Br;
-        TextView Txt_Title, Txt_Category, Txt_Intro, Txt_GradeAvg;
+        TextView Txt_Title, Txt_Category, Txt_Intro, Txt_GradeAvg, Txt_Deadtime;
         ImageView Img_Key1, Img_Key2, Img_Key3, Img_Key4, Img_Key5;
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -117,6 +123,7 @@ public class Tab0_Theme_Adapter extends RecyclerView.Adapter<Tab0_Theme_Adapter.
             Img_Img = (ImageView)itemView.findViewById(R.id.img_theme);
             Img_Br = (ImageView)itemView.findViewById(R.id.img_br);
             Txt_Title = (TextView)itemView.findViewById(R.id.txt_title);
+            Txt_Deadtime = (TextView)itemView.findViewById(R.id.txt_deadtime);
             Txt_Category = (TextView)itemView.findViewById(R.id.txt_category);
             Txt_Intro = (TextView)itemView.findViewById(R.id.txt_contents);
             Txt_GradeAvg = (TextView)itemView.findViewById(R.id.txt_gradeavg);

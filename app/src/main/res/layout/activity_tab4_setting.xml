@@ -72,9 +72,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="7dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginTop="7dp"
-                        android:background="@color/line_homefocus">
+                        android:background="@color/line_homefocus"
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -91,13 +92,26 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:background="@null"
+                                android:enabled="false"
                                 android:fontFamily="@font/notosansmonocjkkr_regular_cus"
                                 android:text="닉네임"
                                 android:textColor="@color/black"
-                                android:textSize="11sp"
-                                android:enabled="false"/>
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_userchange"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@color/point3"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:text="변경"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -149,7 +163,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/btn_userchange"
+                        android:id="@+id/btn_changepass"
                         android:layout_width="70dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
@@ -182,86 +196,112 @@
                 android:background="@color/white">
 
                 <LinearLayout
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/setting_user_rating_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_mymedal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="3dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/user_medal_1000" />
+
+                    <TextView
+                        android:id="@+id/txt_mymedal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                        android:text="1 ~ 10회"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                    android:text="작성한 테마 리뷰 개수"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                    android:text="리뷰 개수를 토대로 뱃지가 자동 반영됩니다."
+                    android:textColor="@color/text_gray"
+                    android:textSize="10sp" />
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
 
                     <LinearLayout
                         android:id="@+id/layout_experience1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
                             android:adjustViewBounds="true"
-                            android:paddingTop="15dp"
+                            android:paddingTop="10dp"
                             android:src="@drawable/user_medal_1_10" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="1 ~ 10회"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
 
-                            <ImageView
-                                android:id="@+id/img_experience1"
-                                android:layout_width="12dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/theme_write_radio" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
-                                android:text="1 ~ 10회"
-                                android:textColor="@color/text_gray"
-                                android:textSize="8sp" />
-                        </LinearLayout>
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:id="@+id/layout_experience2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
                             android:adjustViewBounds="true"
-                            android:paddingTop="15dp"
+                            android:paddingTop="10dp"
                             android:src="@drawable/user_medal_11_50" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="11 ~ 50회"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
 
-                            <ImageView
-                                android:id="@+id/img_experience2"
-                                android:layout_width="12dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/theme_write_radio" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
-                                android:text="11 ~ 50회"
-                                android:textColor="@color/text_gray"
-                                android:textSize="8sp" />
-                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -269,38 +309,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
                             android:adjustViewBounds="true"
-                            android:paddingTop="15dp"
+                            android:paddingTop="10dp"
                             android:src="@drawable/user_medal_51_100" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="51 ~ 100회"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
 
-                            <ImageView
-                                android:id="@+id/img_experience3"
-                                android:layout_width="12dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/theme_write_radio" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
-                                android:text="51 ~ 100회"
-                                android:textColor="@color/text_gray"
-                                android:textSize="8sp" />
-                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -308,117 +336,171 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
                             android:adjustViewBounds="true"
-                            android:paddingTop="15dp"
+                            android:paddingTop="5dp"
                             android:src="@drawable/user_medal_101_200" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="101 ~ 200회"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
 
-                            <ImageView
-                                android:id="@+id/img_experience4"
-                                android:layout_width="12dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/theme_write_radio" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
-                                android:text="101 ~ 200회"
-                                android:textColor="@color/text_gray"
-                                android:textSize="8sp" />
-                        </LinearLayout>
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp">
+
 
                     <LinearLayout
                         android:id="@+id/layout_experience5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
                             android:adjustViewBounds="true"
-                            android:paddingTop="15dp"
+                            android:paddingTop="5dp"
                             android:src="@drawable/user_medal_201_300" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="201 ~ 300회"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
 
-                            <ImageView
-                                android:id="@+id/img_experience5"
-                                android:layout_width="12dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/theme_write_radio" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
-                                android:text="201 ~ 300회"
-                                android:textColor="@color/text_gray"
-                                android:textSize="8sp" />
-                        </LinearLayout>
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:id="@+id/layout_experience6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:adjustViewBounds="true"
-                            android:paddingTop="15dp"
-                            android:src="@drawable/user_medal_301" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
+                            android:layout_height="50dp"
                             android:layout_marginBottom="5dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:adjustViewBounds="true"
+                            android:paddingTop="5dp"
+                            android:src="@drawable/user_medal_301_500" />
 
-                            <ImageView
-                                android:id="@+id/img_experience6"
-                                android:layout_width="12dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/theme_write_radio" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="301 ~ 500회"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
-                                android:text="301회 이상"
-                                android:textColor="@color/text_gray"
-                                android:textSize="8sp" />
-                        </LinearLayout>
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_experience7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:adjustViewBounds="true"
+                            android:paddingTop="5dp"
+                            android:src="@drawable/user_medal_501_1000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="501 ~ 1000회"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_experience8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:adjustViewBounds="true"
+                            android:paddingTop="5dp"
+                            android:src="@drawable/user_medal_1000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="1001회 ~"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_ratingflag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_ratingflag"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/setting_user_rating_uncheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                        android:text="표시 안함"
+                        android:textColor="@color/text_gray"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -430,7 +512,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/notosansmonocjkkr_regular_cus"
-                android:text="내 리뷰 공개 설정"
+                android:text="나의 탈출일지 공개 설정"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
             <LinearLayout
@@ -547,7 +629,135 @@
                     android:layout_height="1dp"
                     android:background="#ededed"/>
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                android:text="테마리뷰 시간 표기"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/notosanscjkkr_medium_cus"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="남은시간 순으로 보기 / 걸린 시간으로 보기"
+                            android:textColor="@color/black"
+                            android:textSize="10sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/img_extratime"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/setting_time_extra_click" />
+
+                            <ImageView
+                                android:id="@+id/img_usetime"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/setting_time_use" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#ededed"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                android:text="테마리뷰 더보기 기본 정렬"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_category1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:adjustViewBounds="true"
+                    android:gravity="center"
+                    android:src="@drawable/themelist_new_check" />
+
+                <ImageView
+                    android:id="@+id/img_category2"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:adjustViewBounds="true"
+                    android:gravity="center"
+                    android:src="@drawable/themelist_grade" />
+
+                <ImageView
+                    android:id="@+id/img_category3"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:adjustViewBounds="true"
+                    android:gravity="center"
+                    android:src="@drawable/themelist_rank" />
+
+                <ImageView
+                    android:id="@+id/img_category4"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:gravity="center"
+                    android:src="@drawable/themelist_rec" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

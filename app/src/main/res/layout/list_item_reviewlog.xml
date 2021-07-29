@@ -7,7 +7,7 @@
         android:id="@+id/layout_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -52,6 +52,7 @@
                     android:textSize="11sp" />
 
                 <LinearLayout
+                    android:id="@+id/layout_star"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -155,12 +156,12 @@
 
                 <ImageView
                     android:id="@+id/img_level"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="5dp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/theme_level_normal" />
+                    android:src="@drawable/theme_level_1" />
             </LinearLayout>
 
         </LinearLayout>

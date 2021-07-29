@@ -11,10 +11,6 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +19,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,7 +46,7 @@ import me.drakeet.materialdialog.MaterialDialog;
  */
 
 public class Flash extends AppCompatActivity {
-    static final String Project_version = "1.9.5";
+    public static final String Project_version = "2.3.7";
     String[][] ParsedData_Setting;
 
     SharedPreferences preferences;
@@ -72,9 +73,9 @@ public class Flash extends AppCompatActivity {
                 Check_Setting();
             }
             else{
-                setDialog_GpsOn();
+                //setDialog_GpsOn();
+                Check_Setting();
             }
-
         }
         else{
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CALENDAR)){
@@ -131,7 +132,12 @@ public class Flash extends AppCompatActivity {
         HttpClient http_setting = new HttpClient();
         String result = http_setting.HttpClient("Web_Escape","Setting.jsp");
         ParsedData_Setting = jsonParserList_Setting(result);
-        if(!Project_version.equals(ParsedData_Setting[0][0])){
+        String test1 = Project_version.replace(".", "");
+        String test2 = ParsedData_Setting[0][0].replace(".", "");
+
+        int str_project_version = Integer.parseInt(test1);
+        int str_server_version = Integer.parseInt(test2);
+        if(str_project_version <  str_server_version){
             LayoutInflater inflater = (LayoutInflater)Flash.this.getSystemService(Flash.LAYOUT_INFLATER_SERVICE);
             final View layout = inflater.inflate(R.layout.dialog_update, (ViewGroup)findViewById(R.id.Customdialog_Update_Root));
             final Button Customdialog_Update_Button_Ok = (Button)layout.findViewById(R.id.Customdialog_Update_Button_Ok);
@@ -152,7 +158,6 @@ public class Flash extends AppCompatActivity {
         else{
             myTask = new TimerTask() {
                 int i = 2;
-
                 public void run() {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -161,6 +166,7 @@ public class Flash extends AppCompatActivity {
                             if (i <= 0) {
                                 HttpClient http_count = new HttpClient();
                                 http_count.HttpClient("Web_Escape","Today_Counting.jsp", strCurToday);
+                                http_count.HttpClient("Web_Escape","Today_Counting_v2.jsp", strCurToday, "and");
                                 timer.cancel();
 
                                 setIntent(User_Pk);

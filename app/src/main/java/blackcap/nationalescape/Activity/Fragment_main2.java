@@ -3,11 +3,10 @@ package blackcap.nationalescape.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -42,7 +46,7 @@ import blackcap.nationalescape.Uitility.Progressbar_wheel;
 
 import static blackcap.nationalescape.Activity.MainActivity.filter_sort;
 
-public class Fragment_main2 extends android.support.v4.app.Fragment implements MapView.POIItemEventListener{
+public class Fragment_main2 extends Fragment implements MapView.POIItemEventListener{
     boolean view = false;
 
     private MapView mapView;
@@ -66,6 +70,8 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
     private static View parent;
     private String[][] parseredData_company;
     private String Comapny_Pk = "", Title = "", Grade_Avg = "", Recommend_Count = "", Distance = "", Intro = "", Address = "";
+    public static String frag2_address_x = "", frag2_address_y = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,7 +85,7 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
         //검색시 리스트 뷰 이벤트
         setSearch_Event();
         //지도 원위치 이벤트
-        setMap_Refresh();
+        //setMap_Refresh();
         view = true;
         return rootView;
     }
@@ -92,13 +98,17 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
         }
         //뷰가 포커스 갔다 온 경우
         else{
-            mapView = new MapView(getActivity());
-            mapView.setPOIItemEventListener(this);
-            mapViewContainer = (ViewGroup)parent.findViewById(R.id.map_view);
-            mapViewContainer.addView(mapView);
+            if(getActivity() != null){
+                if(mapView == null){
+                    mapView = new MapView(getActivity());
+                    mapView.setPOIItemEventListener(this);
+                    mapViewContainer = (ViewGroup)parent.findViewById(R.id.map_view);
+                    mapViewContainer.addView(mapView);
 
-            Async_reload async_reload = new Async_reload();
-            async_reload.execute();
+                    Async_reload async_reload = new Async_reload();
+                    async_reload.execute();
+                }
+            }
         }
         view = true;
     }
@@ -108,6 +118,7 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
         super.onPause();
         mapViewContainer.removeView(mapView);
         mapViewContainer.removeAllViews();
+        mapView = null;
         view = false;
     }
     public void init(View rootView){
@@ -176,8 +187,11 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
                 }
             }
         }
+        if(location_adapter != null){
+            location_adapter.notifyDataSetChanged();
+        }
         // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
-        location_adapter.notifyDataSetChanged();
+
     }
     public void setMap(String x, String y){
         //중심점 변경
@@ -188,6 +202,7 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
         mapView.zoomIn(true);
         //줌 아웃
         mapView.zoomOut(true);
+
     }
     public void setMap_Refresh(){
         Img_Refresh.setOnClickListener(new View.OnClickListener() {
@@ -198,12 +213,29 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
                     gps_y = Double.toString(gps.getLongitude());
                 } else {
                     // GPS 를 사용할수 없으므로
-                    gps.showSettingsAlert();
+                    gps_x = 37.497942+"";
+                    gps_y = 127.0254323+"";
                 }
                 setMap(gps_x, gps_y);
+
             }
         });
     }
+    public void setMap_This(int position, String pk, String title, String x, String y){
+        MapPOIItem marker = new MapPOIItem();
+        marker.setItemName("현재 위치");
+        marker.setTag(-1);
+        marker.setMapPoint(MapPoint.mapPointWithGeoCoord(Double.parseDouble(x), Double.parseDouble(y)));
+        marker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 마커타입을 커스텀 마커로 지정.
+        marker.setCustomImageResourceId(R.drawable.map_now); // 마커 이미지.
+        marker.setSelectedMarkerType(MapPOIItem.MarkerType.CustomImage);
+        marker.setCustomSelectedImageResourceId(R.drawable.map_now);
+        marker.setCustomImageAutoscale(false); // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
+        marker.setCustomImageAnchor(0.5f, 1.0f);
+        mapView.addPOIItem(marker);
+        mapView.selectPOIItem(marker, true);
+    }
+
     public void setMap_Marker(int position, String pk, String title, String x, String y){
         MapPOIItem marker = new MapPOIItem();
         marker.setItemName(title);
@@ -241,8 +273,11 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
                     gps_y = Double.toString(gps.getLongitude());
                 } else {
                     // GPS 를 사용할수 없으므로
-                    gps.showSettingsAlert();
+                    //gps.showSettingsAlert();
+                    gps_x = 37.497942+"";
+                    gps_y = 127.0254323+"";
                 }
+
 
                 HttpClient http = new HttpClient();
                 //장소 좌표 받아오기
@@ -275,9 +310,11 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
                     String favorite = parseredData_company[i][8];
                     String address_x = parseredData_company[i][9];
                     String address_y = parseredData_company[i][10];
-                    company_models.add(new Company_Model(getActivity(),company_pk, owner_pk, title, intro, grade_avg, recommend_count, address, distance, favorite));
+                    company_models.add(new Company_Model(getActivity(),company_pk, owner_pk, title, intro, grade_avg, recommend_count, address, distance, favorite, "false"));
                     setMap_Marker(i,company_pk, title, address_x, address_y);
                 }
+
+                setMap_This(0, "1", "t", gps_x, gps_y);
                 return "succed";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -304,13 +341,12 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
             //검색 리스트 초기화
             location_list.clear();
             location_adapter.notifyDataSetChanged();
-
+            setMap(gps_x, gps_y);
             progressDialog.dismiss();
         }
     }
     public class Async_reload extends AsyncTask<String, Void, String> {
         public Progressbar_wheel progressDialog;
-
 
         @Override
         protected void onPreExecute() {
@@ -329,7 +365,8 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
                     gps_y = Double.toString(gps.getLongitude());
                 } else {
                     // GPS 를 사용할수 없으므로
-                    gps.showSettingsAlert();
+                    gps_x = 37.497942+"";
+                    gps_y = 127.0254323+"";
                 }
 
                 //서버 값 리스트 뷰 전달 및 뷰
@@ -346,9 +383,11 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
                     String favorite = parseredData_company[i][8];
                     String address_x = parseredData_company[i][9];
                     String address_y = parseredData_company[i][10];
-                    company_models.add(new Company_Model(getActivity(),company_pk, owner_pk, title, intro, grade_avg, recommend_count, address, distance, favorite));
+                    company_models.add(new Company_Model(getActivity(),company_pk, owner_pk, title, intro, grade_avg, recommend_count, address, distance, favorite, "false"));
                     setMap_Marker(i,company_pk, title, address_x, address_y);
                 }
+
+                setMap_This(0, "1", "t", gps_x, gps_y);
                 return "succed";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -359,7 +398,7 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            setMap(gps_x, gps_y);
+            setMap_Refresh();
             gps.stopUsingGPS();
 
             progressDialog.dismiss();
@@ -407,46 +446,49 @@ public class Fragment_main2 extends android.support.v4.app.Fragment implements M
 
     @Override
     public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
-        Layout_Company.setVisibility(View.VISIBLE);
-        RelativeLayout.LayoutParams plControl = (RelativeLayout.LayoutParams) Img_Refresh.getLayoutParams();
-        /*해당 margin값 변경*/
-        plControl.bottomMargin = 450;
-        /*변경된 값의 파라미터를 해당 레이아웃 파라미터 값에 셋팅*/
-        Img_Refresh.setLayoutParams(plControl);
+        if(mapPOIItem.getTag() != -1){
+            Layout_Company.setVisibility(View.VISIBLE);
+            RelativeLayout.LayoutParams plControl = (RelativeLayout.LayoutParams) Img_Refresh.getLayoutParams();
+            /*해당 margin값 변경*/
+            plControl.bottomMargin = 450;
+            /*변경된 값의 파라미터를 해당 레이아웃 파라미터 값에 셋팅*/
+            Img_Refresh.setLayoutParams(plControl);
 
-        Comapny_Pk = company_models.get(mapPOIItem.getTag()+0).getCompany_Pk();
-        Title = company_models.get(mapPOIItem.getTag()+0).getTitle();
-        Grade_Avg = company_models.get(mapPOIItem.getTag()+0).getGrade_Avg();
-        Distance = company_models.get(mapPOIItem.getTag()+0).getDistance();
-        Recommend_Count = company_models.get(mapPOIItem.getTag()+0).getRecommend_Count();
-        Intro = company_models.get(mapPOIItem.getTag()+0).getIntro();
-        Address = company_models.get(mapPOIItem.getTag()+0).getAddress();
+            Comapny_Pk = company_models.get(mapPOIItem.getTag()+0).getCompany_Pk();
+            Title = company_models.get(mapPOIItem.getTag()+0).getTitle();
+            Grade_Avg = company_models.get(mapPOIItem.getTag()+0).getGrade_Avg();
+            Distance = company_models.get(mapPOIItem.getTag()+0).getDistance();
+            Recommend_Count = company_models.get(mapPOIItem.getTag()+0).getRecommend_Count();
+            Intro = company_models.get(mapPOIItem.getTag()+0).getIntro();
+            Address = company_models.get(mapPOIItem.getTag()+0).getAddress();
+            frag2_address_x = mapView.getX()+"";
+            frag2_address_y = mapView.getY()+"";
+            Glide.with(getActivity()).load("http://www.yologuys.com/Escape_img/company/"+(Comapny_Pk)+".jpg").apply(new RequestOptions().placeholder(R.drawable.tab2_company_basic).centerCrop())
+                    .into(Img_Company);
 
-        Glide.with(getActivity()).load("http://www.yologuys.com/Escape_img/company/"+(Comapny_Pk)+".jpg").apply(new RequestOptions().placeholder(R.drawable.tab2_company_basic).centerCrop())
-                .into(Img_Company);
+            Txt_Title.setText(Title);
+            Txt_Distance.setText(Distance);
+            Txt_Grageavg.setText(Grade_Avg);
+            Txt_Recommend.setText(Recommend_Count);
+            Txt_Contents.setText(Intro);
 
-        Txt_Title.setText(Title);
-        Txt_Distance.setText(Distance);
-        Txt_Grageavg.setText(Grade_Avg);
-        Txt_Recommend.setText(Recommend_Count);
-        Txt_Contents.setText(Intro);
+            Layout_Company.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), Home_Focus.class);
+                    intent.putExtra("Company_Pk", Comapny_Pk);
+                    intent.putExtra("Title", Title);
+                    intent.putExtra("Grade_Avg", Grade_Avg);
+                    intent.putExtra("Recommend_Count", Recommend_Count);
+                    intent.putExtra("Distance", Distance);
+                    intent.putExtra("Intro", Intro);
+                    intent.putExtra("Address", Address);
+                    startActivity(intent);
 
-        Layout_Company.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Home_Focus.class);
-                intent.putExtra("Company_Pk", Comapny_Pk);
-                intent.putExtra("Title", Title);
-                intent.putExtra("Grade_Avg", Grade_Avg);
-                intent.putExtra("Recommend_Count", Recommend_Count);
-                intent.putExtra("Distance", Distance);
-                intent.putExtra("Intro", Intro);
-                intent.putExtra("Address", Address);
-                startActivity(intent);
-
-                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-            }
-        });
+                    getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                }
+            });
+        }
     }
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {

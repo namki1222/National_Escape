@@ -126,7 +126,7 @@ public class JsonParserList {
         try {
             JSONObject json = new JSONObject(result);
             JSONArray jArr = json.getJSONArray("List");
-            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7"};
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7", "msg8"};
             String[][] parseredData = new String[jArr.length()][jsonName.length];
             for (int i = 0; i < jArr.length(); i++) {
                 json = jArr.getJSONObject(i);
@@ -235,6 +235,25 @@ public class JsonParserList {
             return null;
         }
     }
+    public String[][] jsonParserList_Data13(String result){
+        Log.i("서버에서 받은 전체 내용", result);
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONArray jArr = json.getJSONArray("List");
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7", "msg8", "msg9", "msg10", "msg11", "msg12", "msg13"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                for (int j = 0; j < jsonName.length; j++) {
+                    parseredData[i][j] = json.getString(jsonName[j]);
+                }
+            }
+            return parseredData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public String[][] jsonParserList_Data14(String result){
         Log.i("서버에서 받은 전체 내용", result);
         try {
@@ -254,4 +273,119 @@ public class JsonParserList {
             return null;
         }
     }
+    public String[][] jsonParserList_Data15(String result){
+        Log.i("서버에서 받은 전체 내용", result);
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONArray jArr = json.getJSONArray("List");
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7", "msg8", "msg9", "msg10", "msg11", "msg12", "msg13", "msg14","msg15"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                for (int j = 0; j < jsonName.length; j++) {
+                    parseredData[i][j] = json.getString(jsonName[j]);
+                }
+            }
+            return parseredData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String[][] jsonParserList_Data16(String result){
+        Log.i("서버에서 받은 전체 내용", result);
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONArray jArr = json.getJSONArray("List");
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7", "msg8", "msg9", "msg10", "msg11", "msg12", "msg13", "msg14","msg15","msg16"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                for (int j = 0; j < jsonName.length; j++) {
+                    parseredData[i][j] = json.getString(jsonName[j]);
+                }
+            }
+            return parseredData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String[][] jsonParserList_Data17(String result){
+        Log.i("서버에서 받은 전체 내용", result);
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONArray jArr = json.getJSONArray("List");
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7", "msg8", "msg9", "msg10", "msg11", "msg12", "msg13", "msg14","msg15","msg16","msg17"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                for (int j = 0; j < jsonName.length; j++) {
+                    parseredData[i][j] = json.getString(jsonName[j]);
+                }
+            }
+            return parseredData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String[][] jsonParserList_Data18(String result){
+        Log.i("서버에서 받은 전체 내용", result);
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONArray jArr = json.getJSONArray("List");
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7", "msg8", "msg9", "msg10", "msg11", "msg12", "msg13", "msg14","msg15","msg16","msg17","msg18"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                for (int j = 0; j < jsonName.length; j++) {
+                    parseredData[i][j] = json.getString(jsonName[j]);
+                }
+            }
+            return parseredData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String[][] jsonParserList_Data19(String result){
+        Log.i("서버에서 받은 전체 내용", result);
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONArray jArr = json.getJSONArray("List");
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7", "msg8", "msg9", "msg10", "msg11", "msg12", "msg13", "msg14","msg15","msg16","msg17","msg18","msg19"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                for (int j = 0; j < jsonName.length; j++) {
+                    parseredData[i][j] = json.getString(jsonName[j]);
+                }
+            }
+            return parseredData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String[][] jsonParserList_Data21(String result){
+        Log.i("서버에서 받은 전체 내용", result);
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONArray jArr = json.getJSONArray("List");
+            String[] jsonName = {"msg1", "msg2", "msg3", "msg4", "msg5", "msg6", "msg7", "msg8", "msg9", "msg10", "msg11", "msg12", "msg13", "msg14","msg15","msg16","msg17","msg18","msg19", "msg20", "msg21"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                for (int j = 0; j < jsonName.length; j++) {
+                    parseredData[i][j] = json.getString(jsonName[j]);
+                }
+            }
+            return parseredData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

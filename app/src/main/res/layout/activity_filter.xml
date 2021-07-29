@@ -105,9 +105,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_seoulall"
+                            android:id="@+id/txt_1"
                             style="@style/CustomTextView_filter"
-                            android:text="서울(기타)" />
+                            android:text="홍대" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -119,9 +119,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_hongdae"
+                            android:id="@+id/txt_2"
                             style="@style/CustomTextView_filter"
-                            android:text="홍대(서울)" />
+                            android:text="강남" />
                     </LinearLayout>
                 </LinearLayout>
                 //2 줄
@@ -141,9 +141,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_gangnam"
+                            android:id="@+id/txt_3"
                             style="@style/CustomTextView_filter"
-                            android:text="강남(서울)" />
+                            android:text="건대" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -155,9 +155,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_geondae"
+                            android:id="@+id/txt_4"
                             style="@style/CustomTextView_filter"
-                            android:text="건대(서울)" />
+                            android:text="신촌" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -169,9 +169,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_gyeonggi"
+                            android:id="@+id/txt_5"
                             style="@style/CustomTextView_filter"
-                            android:text="경기(기타)" />
+                            android:text="대학로" />
                     </LinearLayout>
                 </LinearLayout>
                 //3 줄
@@ -191,9 +191,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_bupyeong"
+                            android:id="@+id/txt_6"
                             style="@style/CustomTextView_filter"
-                            android:text="부평" />
+                            android:text="강북" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -205,9 +205,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_incheon"
+                            android:id="@+id/txt_7"
                             style="@style/CustomTextView_filter"
-                            android:text="인천(기타)" />
+                            android:text="신림" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -219,9 +219,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_suwon"
+                            android:id="@+id/txt_8"
                             style="@style/CustomTextView_filter"
-                            android:text="수원" />
+                            android:text="서울(기타)" />
                     </LinearLayout>
                 </LinearLayout>
                 //4 줄
@@ -241,9 +241,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_ansan"
+                            android:id="@+id/txt_9"
                             style="@style/CustomTextView_filter"
-                            android:text="안산" />
+                            android:text="부천" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -255,9 +255,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_busan"
+                            android:id="@+id/txt_10"
                             style="@style/CustomTextView_filter"
-                            android:text="부산" />
+                            android:text="일산" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -269,9 +269,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_daegu"
+                            android:id="@+id/txt_11"
                             style="@style/CustomTextView_filter"
-                            android:text="대구" />
+                            android:text="수원" />
                     </LinearLayout>
                 </LinearLayout>
                 //5 줄
@@ -291,9 +291,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_ulsan"
+                            android:id="@+id/txt_12"
                             style="@style/CustomTextView_filter"
-                            android:text="울산" />
+                            android:text="안양" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -305,9 +305,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_daejeon"
+                            android:id="@+id/txt_13"
                             style="@style/CustomTextView_filter"
-                            android:text="대전" />
+                            android:text="경기(기타)" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -319,9 +319,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_gwangju"
+                            android:id="@+id/txt_14"
                             style="@style/CustomTextView_filter"
-                            android:text="광주" />
+                            android:text="인천" />
                     </LinearLayout>
                 </LinearLayout>
                 //6 줄
@@ -341,9 +341,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_gyeongsang"
+                            android:id="@+id/txt_15"
                             style="@style/CustomTextView_filter"
-                            android:text="경상(기타)" />
+                            android:text="대전" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -355,9 +355,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_jeonla"
+                            android:id="@+id/txt_16"
                             style="@style/CustomTextView_filter"
-                            android:text="전라(기타)" />
+                            android:text="천안" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -369,9 +369,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_chungcheong"
+                            android:id="@+id/txt_17"
                             style="@style/CustomTextView_filter"
-                            android:text="충청(기타)" />
+                            android:text="청주" />
                     </LinearLayout>
                 </LinearLayout>
                 //7 줄
@@ -391,9 +391,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_gangwon"
+                            android:id="@+id/txt_18"
                             style="@style/CustomTextView_filter"
-                            android:text="강원" />
+                            android:text="충청(기타)" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -405,9 +405,9 @@
                         android:background="@color/line_home">
 
                         <TextView
-                            android:id="@+id/txt_jeju"
+                            android:id="@+id/txt_19"
                             style="@style/CustomTextView_filter"
-                            android:text="제주" />
+                            android:text="대구" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -416,9 +416,110 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:background="@color/line_home"
-                        android:visibility="invisible">
+                        android:background="@color/line_home">
 
+                        <TextView
+                            android:id="@+id/txt_20"
+                            style="@style/CustomTextView_filter"
+                            android:text="부산" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/line_home">
+
+                        <TextView
+                            android:id="@+id/txt_21"
+                            style="@style/CustomTextView_filter"
+                            android:text="경상(기타)" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/line_home">
+
+                        <TextView
+                            android:id="@+id/txt_22"
+                            style="@style/CustomTextView_filter"
+                            android:text="전주" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/line_home">
+
+                        <TextView
+                            android:id="@+id/txt_23"
+                            style="@style/CustomTextView_filter"
+                            android:text="광주" />
+                    </LinearLayout>
+                </LinearLayout>
+                //7 줄
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/line_home">
+
+                        <TextView
+                            android:id="@+id/txt_24"
+                            style="@style/CustomTextView_filter"
+                            android:text="전라(기타)" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/line_home">
+
+                        <TextView
+                            android:id="@+id/txt_25"
+                            style="@style/CustomTextView_filter"
+                            android:text="강원" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/line_home">
+
+                        <TextView
+                            android:id="@+id/txt_26"
+                            style="@style/CustomTextView_filter"
+                            android:text="제주" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -500,8 +601,126 @@
 
                     </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:includeFontPadding="false"
+                        android:letterSpacing="0.1"
+                        android:text="기타"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                //첫 줄
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layout_foreign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_foreign"
+                            android:layout_width="22dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/filter_uncheck" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="외국어"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_alone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_alone"
+                            android:layout_width="22dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/filter_uncheck" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="혼방가능"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_escape"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_escape"
+                            android:layout_width="22dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/filter_uncheck" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/notosansmonocjkkr_regular_cus"
+                            android:text="전방제휴"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

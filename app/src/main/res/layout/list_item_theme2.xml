@@ -37,89 +37,105 @@
                     android:background="@drawable/img_info_bg"
                     android:scaleType="fitXY"/>
             </RelativeLayout>
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true">
 
-                <ImageView
-                    android:layout_width="9dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/star" />
-
-                <TextView
-                    android:id="@+id/txt_gradeavg"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="9dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/star" />
+
+                    <TextView
+                        android:id="@+id/txt_gradeavg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:includeFontPadding="false"
+                        android:text="800m"
+                        android:textColor="@color/gray"
+                        android:textSize="8sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/notosanscjkkr_medium_cus"
+                        android:includeFontPadding="false"
+                        android:text="난이도"
+                        android:textColor="@color/gray"
+                        android:textSize="8sp" />
+
+                    <ImageView
+                        android:id="@+id/img_key1"
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="1dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/theme_level_yellow" />
+
+                    <ImageView
+                        android:id="@+id/img_key2"
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="1dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/theme_level_yellow" />
+
+                    <ImageView
+                        android:id="@+id/img_key3"
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="1dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/theme_level_yellow" />
+
+                    <ImageView
+                        android:id="@+id/img_key4"
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="1dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/theme_level_yellow" />
+
+                    <ImageView
+                        android:id="@+id/img_key5"
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/theme_level_yellow" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_deadtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
                     android:fontFamily="@font/notosanscjkkr_medium_cus"
                     android:includeFontPadding="false"
-                    android:text="800m"
+                    android:text="제한시간 : 60분"
                     android:textColor="@color/gray"
                     android:textSize="8sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/notosanscjkkr_medium_cus"
-                    android:includeFontPadding="false"
-                    android:text="난이도"
-                    android:textColor="@color/gray"
-                    android:textSize="8sp" />
-
-                <ImageView
-                    android:id="@+id/img_key1"
-                    android:layout_width="6dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="1dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/theme_level_yellow" />
-
-                <ImageView
-                    android:id="@+id/img_key2"
-                    android:layout_width="6dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="1dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/theme_level_yellow" />
-
-                <ImageView
-                    android:id="@+id/img_key3"
-                    android:layout_width="6dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="1dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/theme_level_yellow" />
-
-                <ImageView
-                    android:id="@+id/img_key4"
-                    android:layout_width="6dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="1dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/theme_level_yellow" />
-
-                <ImageView
-                    android:id="@+id/img_key5"
-                    android:layout_width="6dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/theme_level_yellow" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -172,7 +188,6 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"

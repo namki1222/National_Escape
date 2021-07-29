@@ -13,7 +13,8 @@ public class Theme_Model {
     private String Person;
     private String Tool;
     private String Theme_Activity;
-    public Theme_Model(android.app.Activity activity, String theme_Pk, String company_Pk, String img, String title, String intro, String category, String grade, String level, String person, String tool, String theme_activity){
+    private String Deadtime;
+    public Theme_Model(android.app.Activity activity, String theme_Pk, String company_Pk, String img, String title, String intro, String category, String grade, String level, String person, String tool, String theme_activity, String deadtime){
         this.Activity = activity;
         this.Theme_Pk = theme_Pk;
         this.Company_Pk = company_Pk;
@@ -26,6 +27,7 @@ public class Theme_Model {
         this.Person = person;
         this.Tool = tool;
         this.Theme_Activity = theme_activity;
+        this.Deadtime = deadtime;
     }
     public android.app.Activity getActivity(){return Activity;}
     public String getTheme_Pk(){return Theme_Pk;}
@@ -47,4 +49,7 @@ public class Theme_Model {
     public String getPerson(){return Person;}
     public String getTool(){return Tool;}
     public String getTheme_Activity(){return Theme_Activity;}
+    public String getDeadtime(){
+        return Deadtime;
+    }
 }

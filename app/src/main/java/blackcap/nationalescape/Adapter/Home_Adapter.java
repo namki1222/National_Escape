@@ -2,7 +2,6 @@ package blackcap.nationalescape.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -69,6 +70,15 @@ public class Home_Adapter extends RecyclerView.Adapter<Home_Adapter.ViewHolder> 
                         .into(holder.Img_Favorite);
                 favorite = false;
             }
+            if(items.getFlag_Premium().equals("true")){
+                holder.Img_Premium.setVisibility(View.VISIBLE);
+                holder.Img_Premium_Bg.setVisibility(View.VISIBLE);
+            }
+            else{
+                holder.Img_Premium.setVisibility(View.INVISIBLE);
+                holder.Img_Premium_Bg.setVisibility(View.INVISIBLE);
+            }
+
         } catch (Exception e){
             Log.i("테스트", e+ "테스트");
         }
@@ -83,7 +93,7 @@ public class Home_Adapter extends RecyclerView.Adapter<Home_Adapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView Img_Img;
         TextView Txt_Title, Txt_Intro, Txt_GradeAvg, Txt_Distance;
-        ImageView Img_Favorite;
+        ImageView Img_Favorite, Img_Premium, Img_Premium_Bg;
         public ViewHolder(final View itemView) {
             super(itemView);
             Img_Img = (ImageView)itemView.findViewById(R.id.img_img);
@@ -92,6 +102,8 @@ public class Home_Adapter extends RecyclerView.Adapter<Home_Adapter.ViewHolder> 
             Txt_GradeAvg = (TextView)itemView.findViewById(R.id.txt_grageavg);
             Txt_Distance = (TextView)itemView.findViewById(R.id.txt_distance);
             Img_Favorite = (ImageView)itemView.findViewById(R.id.img_favorite);
+            Img_Premium = (ImageView)itemView.findViewById(R.id.img_premium);
+            Img_Premium_Bg = (ImageView)itemView.findViewById(R.id.img_premium_bg);
             itemView.setOnClickListener(this);
             Img_Favorite.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,7 +137,6 @@ public class Home_Adapter extends RecyclerView.Adapter<Home_Adapter.ViewHolder> 
                                 Glide.with(arrData.get(getAdapterPosition()).getActivity()).load(R.drawable.tab1_favorite)
                                         .into(Img_Favorite);
                                 favorite = false;
-
                                 //찜 탭 내 해당 index 제거
 //                                int index = 0;
 //                                while (index < favorite_models.size()){
@@ -145,7 +156,6 @@ public class Home_Adapter extends RecyclerView.Adapter<Home_Adapter.ViewHolder> 
                             }
                         }
                     }
-
                 }
             });
         }

@@ -2,12 +2,14 @@ package blackcap.nationalescape.Activity.tab1;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import blackcap.nationalescape.R;
 
@@ -18,16 +20,20 @@ public class Home_Filter extends AppCompatActivity {
     private SharedPreferences.Editor editor;
 
     private ImageView Img_Back;
-    private TextView Txt_All, Txt_Seoul, Txt_Hongdae, Txt_Gangnam, Txt_Gundae, Txt_Geonggi;
-    private TextView Txt_Bupung, Txt_Incheon, Txt_Suwon, Txt_Ansan, Txt_Busan, Txt_Daegu;
-    private TextView Txt_Ulsan, Txt_Dageon, Txt_Gungju, Txt_Gyeongsang, Txt_Jenla, Txt_Chungcheong;
-    private TextView Txt_Gangwon, Txt_Jeju;
+    private TextView Txt_All, Txt_1, Txt_2, Txt_3, Txt_4, Txt_5;
+    private TextView Txt_6, Txt_7, Txt_8, Txt_9, Txt_10, Txt_11;
+    private TextView Txt_12, Txt_13, Txt_14, Txt_15, Txt_16, Txt_17;
+    private TextView Txt_18, Txt_19, Txt_20, Txt_21, Txt_22, Txt_23;
+    private TextView Txt_24, Txt_25, Txt_26;
 
     private TextView Txt_Distance, Txt_Grade;
 
+    private LinearLayout Layout_Foreign, Layout_Alone, Layout_Escape;
+    private ImageView Img_Foreign, Img_Alone, Img_Escape;
+
     private String filter_area = "", filter_sort = "";
     private int count = 0;
-
+    private String check_foreign = "", check_alone = "", check_escape = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +42,8 @@ public class Home_Filter extends AppCompatActivity {
         init();
         setFilter_init();
         setArea_Event();
+        //체크박스 이벤트
+        setCheck_Event();
         setImgBack();
 
     }
@@ -43,49 +51,70 @@ public class Home_Filter extends AppCompatActivity {
         Img_Back = (ImageView)findViewById(R.id.img_back);
         Txt_All = (TextView)findViewById(R.id.txt_all);
         Txt_All.setTag("전국");
-        Txt_Seoul = (TextView)findViewById(R.id.txt_seoulall);
-        Txt_Seoul.setTag("서울");
-        Txt_Hongdae = (TextView)findViewById(R.id.txt_hongdae);
-        Txt_Hongdae.setTag("홍대");
-        Txt_Gangnam = (TextView)findViewById(R.id.txt_gangnam);
-        Txt_Gangnam.setTag("강남");
-        Txt_Gundae = (TextView)findViewById(R.id.txt_geondae);
-        Txt_Gundae.setTag("건대");
-        Txt_Geonggi = (TextView)findViewById(R.id.txt_gyeonggi);
-        Txt_Geonggi.setTag("경기");
-        Txt_Bupung = (TextView)findViewById(R.id.txt_bupyeong);
-        Txt_Bupung.setTag("부평");
-        Txt_Incheon = (TextView)findViewById(R.id.txt_incheon);
-        Txt_Incheon.setTag("인천");
-        Txt_Suwon = (TextView)findViewById(R.id.txt_suwon);
-        Txt_Suwon.setTag("수원");
-        Txt_Ansan = (TextView)findViewById(R.id.txt_ansan);
-        Txt_Ansan.setTag("안산");
-        Txt_Busan = (TextView)findViewById(R.id.txt_busan);
-        Txt_Busan.setTag("부산");
-        Txt_Daegu = (TextView)findViewById(R.id.txt_daegu);
-        Txt_Daegu.setTag("대구");
-        Txt_Ulsan = (TextView)findViewById(R.id.txt_ulsan);
-        Txt_Ulsan.setTag("울산");
-        Txt_Dageon = (TextView)findViewById(R.id.txt_daejeon);
-        Txt_Dageon.setTag("대전");
-        Txt_Gungju = (TextView)findViewById(R.id.txt_gwangju);
-        Txt_Gungju.setTag("광주");
-        Txt_Gyeongsang = (TextView)findViewById(R.id.txt_gyeongsang);
-        Txt_Gyeongsang.setTag("경상");
-        Txt_Jenla = (TextView)findViewById(R.id.txt_jeonla);
-        Txt_Jenla.setTag("전라");
-        Txt_Chungcheong = (TextView)findViewById(R.id.txt_chungcheong);
-        Txt_Chungcheong.setTag("충청");
-        Txt_Gangwon = (TextView)findViewById(R.id.txt_gangwon);
-        Txt_Gangwon.setTag("강원");
-        Txt_Jeju = (TextView)findViewById(R.id.txt_jeju);
-        Txt_Jeju.setTag("제주");
+        Txt_1 = (TextView)findViewById(R.id.txt_1);
+        Txt_1.setTag("홍대_");
+        Txt_2 = (TextView)findViewById(R.id.txt_2);
+        Txt_2.setTag("강남_");
+        Txt_3 = (TextView)findViewById(R.id.txt_3);
+        Txt_3.setTag("건대_");
+        Txt_4 = (TextView)findViewById(R.id.txt_4);
+        Txt_4.setTag("신촌_");
+        Txt_5 = (TextView)findViewById(R.id.txt_5);
+        Txt_5.setTag("대학로_");
+        Txt_6 = (TextView)findViewById(R.id.txt_6);
+        Txt_6.setTag("강북_");
+        Txt_7 = (TextView)findViewById(R.id.txt_7);
+        Txt_7.setTag("신림_");
+        Txt_8 = (TextView)findViewById(R.id.txt_8);
+        Txt_8.setTag("서울(기타)_");
+        Txt_9 = (TextView)findViewById(R.id.txt_9);
+        Txt_9.setTag("부천_");
+        Txt_10 = (TextView)findViewById(R.id.txt_10);
+        Txt_10.setTag("일산_");
+        Txt_11 = (TextView)findViewById(R.id.txt_11);
+        Txt_11.setTag("수원_");
+        Txt_12 = (TextView)findViewById(R.id.txt_12);
+        Txt_12.setTag("안양_");
+        Txt_13 = (TextView)findViewById(R.id.txt_13);
+        Txt_13.setTag("경기(기타)_");
+        Txt_14 = (TextView)findViewById(R.id.txt_14);
+        Txt_14.setTag("인천_");
+        Txt_15 = (TextView)findViewById(R.id.txt_15);
+        Txt_15.setTag("대전_");
+        Txt_16 = (TextView)findViewById(R.id.txt_16);
+        Txt_16.setTag("천안_");
+        Txt_17 = (TextView)findViewById(R.id.txt_17);
+        Txt_17.setTag("청주_");
+        Txt_18 = (TextView)findViewById(R.id.txt_18);
+        Txt_18.setTag("충청(기타)_");
+        Txt_19 = (TextView)findViewById(R.id.txt_19);
+        Txt_19.setTag("대구_");
+        Txt_20 = (TextView)findViewById(R.id.txt_20);
+        Txt_20.setTag("부산_");
+        Txt_21 = (TextView)findViewById(R.id.txt_21);
+        Txt_21.setTag("경상(기타)_");
+        Txt_22 = (TextView)findViewById(R.id.txt_22);
+        Txt_22.setTag("전주_");
+        Txt_23 = (TextView)findViewById(R.id.txt_23);
+        Txt_23.setTag("광주_");
+        Txt_24 = (TextView)findViewById(R.id.txt_24);
+        Txt_24.setTag("전라(기타)_");
+        Txt_25 = (TextView)findViewById(R.id.txt_25);
+        Txt_25.setTag("강원_");
+        Txt_26 = (TextView)findViewById(R.id.txt_26);
+        Txt_26.setTag("제주_");
 
         Txt_Distance = (TextView)findViewById(R.id.txt_distance);
         Txt_Distance.setTag("distance");
         Txt_Grade = (TextView)findViewById(R.id.txt_grade);
         Txt_Grade.setTag("grade");
+
+        Layout_Foreign = (LinearLayout)findViewById(R.id.layout_foreign);
+        Layout_Alone = (LinearLayout)findViewById(R.id.layout_alone);
+        Layout_Escape = (LinearLayout)findViewById(R.id.layout_escape);
+        Img_Foreign = (ImageView)findViewById(R.id.img_foreign);
+        Img_Alone = (ImageView)findViewById(R.id.img_alone);
+        Img_Escape = (ImageView)findViewById(R.id.img_escape);
 
         tab1_refresh = true;
     }
@@ -93,127 +122,175 @@ public class Home_Filter extends AppCompatActivity {
         preferences = getSharedPreferences("escape", MODE_PRIVATE);
         filter_area = preferences.getString("filter_area", "전국");
         filter_sort = preferences.getString("filter_sort", "distance");
-
+        check_foreign = preferences.getString("check_foreign", "");
+        check_alone = preferences.getString("check_alone", "");
+        check_escape = preferences.getString("check_escape", "");
+        Log.i("테스1", filter_area);
         //전체
         if(filter_area.contains(Txt_All.getTag().toString())){
             Txt_All.setTextColor(getResources().getColor(R.color.white));
             Txt_All.setBackgroundColor(getResources().getColor(R.color.point3));
             count++;
         }
-        //서울
-        if(filter_area.contains(Txt_Seoul.getTag().toString())){
-            Txt_Seoul.setTextColor(getResources().getColor(R.color.white));
-            Txt_Seoul.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
+        else{
+            //서울
+            if(filter_area.contains(Txt_1.getTag().toString())){
+                Txt_1.setTextColor(getResources().getColor(R.color.white));
+                Txt_1.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //홍대
+            if(filter_area.contains(Txt_2.getTag().toString())){
+                Txt_2.setTextColor(getResources().getColor(R.color.white));
+                Txt_2.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //강남
+            if(filter_area.contains(Txt_3.getTag().toString())){
+                Txt_3.setTextColor(getResources().getColor(R.color.white));
+                Txt_3.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //건대
+            if(filter_area.contains(Txt_4.getTag().toString())){
+                Txt_4.setTextColor(getResources().getColor(R.color.white));
+                Txt_4.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //경기
+            if(filter_area.contains(Txt_5.getTag().toString())){
+                Txt_5.setTextColor(getResources().getColor(R.color.white));
+                Txt_5.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //부평
+            if(filter_area.contains(Txt_6.getTag().toString())){
+                Txt_6.setTextColor(getResources().getColor(R.color.white));
+                Txt_6.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //인천
+            if(filter_area.contains(Txt_7.getTag().toString())){
+                Txt_7.setTextColor(getResources().getColor(R.color.white));
+                Txt_7.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //수원
+            if(filter_area.contains(Txt_8.getTag().toString())){
+                Txt_8.setTextColor(getResources().getColor(R.color.white));
+                Txt_8.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //안산
+            if(filter_area.contains(Txt_9.getTag().toString())){
+                Txt_9.setTextColor(getResources().getColor(R.color.white));
+                Txt_9.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //부산
+            if(filter_area.contains(Txt_10.getTag().toString())){
+                Txt_10.setTextColor(getResources().getColor(R.color.white));
+                Txt_10.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //대구
+            if(filter_area.contains(Txt_11.getTag().toString())){
+                Txt_11.setTextColor(getResources().getColor(R.color.white));
+                Txt_11.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //울산
+            if(filter_area.contains(Txt_12.getTag().toString())){
+                Txt_12.setTextColor(getResources().getColor(R.color.white));
+                Txt_12.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //대전
+            if(filter_area.contains(Txt_13.getTag().toString())){
+                Txt_13.setTextColor(getResources().getColor(R.color.white));
+                Txt_13.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //광주
+            if(filter_area.contains(Txt_14.getTag().toString())){
+                Txt_14.setTextColor(getResources().getColor(R.color.white));
+                Txt_14.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //경상 전체
+            if(filter_area.contains(Txt_15.getTag().toString())){
+                Txt_15.setTextColor(getResources().getColor(R.color.white));
+                Txt_15.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //전라 전체
+            if(filter_area.contains(Txt_16.getTag().toString())){
+                Txt_16.setTextColor(getResources().getColor(R.color.white));
+                Txt_16.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //충청 전체
+            if(filter_area.contains(Txt_17.getTag().toString())){
+                Txt_17.setTextColor(getResources().getColor(R.color.white));
+                Txt_17.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //강원 전체
+            if(filter_area.contains(Txt_18.getTag().toString())){
+                Txt_18.setTextColor(getResources().getColor(R.color.white));
+                Txt_18.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //제주 전체
+            if(filter_area.contains(Txt_19.getTag().toString())){
+                Txt_19.setTextColor(getResources().getColor(R.color.white));
+                Txt_19.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //제주 전체
+            if(filter_area.contains(Txt_20.getTag().toString())){
+                Txt_20.setTextColor(getResources().getColor(R.color.white));
+                Txt_20.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //제주 전체
+            if(filter_area.contains(Txt_21.getTag().toString())){
+                Txt_21.setTextColor(getResources().getColor(R.color.white));
+                Txt_21.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //제주 전체
+            if(filter_area.contains(Txt_22.getTag().toString())){
+                Txt_22.setTextColor(getResources().getColor(R.color.white));
+                Txt_22.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //제주 전체
+            if(filter_area.contains(Txt_23.getTag().toString())){
+                Txt_23.setTextColor(getResources().getColor(R.color.white));
+                Txt_23.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //제주 전체
+            if(filter_area.contains(Txt_24.getTag().toString())){
+                Txt_24.setTextColor(getResources().getColor(R.color.white));
+                Txt_24.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //제주 전체
+            if(filter_area.contains(Txt_25.getTag().toString())){
+                Txt_25.setTextColor(getResources().getColor(R.color.white));
+                Txt_25.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
+            //제주 전체
+            if(filter_area.contains(Txt_26.getTag().toString())){
+                Txt_26.setTextColor(getResources().getColor(R.color.white));
+                Txt_26.setBackgroundColor(getResources().getColor(R.color.point3));
+                count++;
+            }
         }
-        //홍대
-        if(filter_area.contains(Txt_Hongdae.getTag().toString())){
-            Txt_Hongdae.setTextColor(getResources().getColor(R.color.white));
-            Txt_Hongdae.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //강남
-        if(filter_area.contains(Txt_Gangnam.getTag().toString())){
-            Txt_Gangnam.setTextColor(getResources().getColor(R.color.white));
-            Txt_Gangnam.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //건대
-        if(filter_area.contains(Txt_Gundae.getTag().toString())){
-            Txt_Gundae.setTextColor(getResources().getColor(R.color.white));
-            Txt_Gundae.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //경기
-        if(filter_area.contains(Txt_Geonggi.getTag().toString())){
-            Txt_Geonggi.setTextColor(getResources().getColor(R.color.white));
-            Txt_Geonggi.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //부평
-        if(filter_area.contains(Txt_Bupung.getTag().toString())){
-            Txt_Bupung.setTextColor(getResources().getColor(R.color.white));
-            Txt_Bupung.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //인천
-        if(filter_area.contains(Txt_Incheon.getTag().toString())){
-            Txt_Incheon.setTextColor(getResources().getColor(R.color.white));
-            Txt_Incheon.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //수원
-        if(filter_area.contains(Txt_Suwon.getTag().toString())){
-            Txt_Suwon.setTextColor(getResources().getColor(R.color.white));
-            Txt_Suwon.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //안산
-        if(filter_area.contains(Txt_Ansan.getTag().toString())){
-            Txt_Ansan.setTextColor(getResources().getColor(R.color.white));
-            Txt_Ansan.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //부산
-        if(filter_area.contains(Txt_Busan.getTag().toString())){
-            Txt_Busan.setTextColor(getResources().getColor(R.color.white));
-            Txt_Busan.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //대구
-        if(filter_area.contains(Txt_Daegu.getTag().toString())){
-            Txt_Daegu.setTextColor(getResources().getColor(R.color.white));
-            Txt_Daegu.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //울산
-        if(filter_area.contains(Txt_Ulsan.getTag().toString())){
-            Txt_Ulsan.setTextColor(getResources().getColor(R.color.white));
-            Txt_Ulsan.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //대전
-        if(filter_area.contains(Txt_Dageon.getTag().toString())){
-            Txt_Dageon.setTextColor(getResources().getColor(R.color.white));
-            Txt_Dageon.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //광주
-        if(filter_area.contains(Txt_Gungju.getTag().toString())){
-            Txt_Gungju.setTextColor(getResources().getColor(R.color.white));
-            Txt_Gungju.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //경상 전체
-        if(filter_area.contains(Txt_Gyeongsang.getTag().toString())){
-            Txt_Gyeongsang.setTextColor(getResources().getColor(R.color.white));
-            Txt_Gyeongsang.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //전라 전체
-        if(filter_area.contains(Txt_Jenla.getTag().toString())){
-            Txt_Jenla.setTextColor(getResources().getColor(R.color.white));
-            Txt_Jenla.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //충청 전체
-        if(filter_area.contains(Txt_Chungcheong.getTag().toString())){
-            Txt_Chungcheong.setTextColor(getResources().getColor(R.color.white));
-            Txt_Chungcheong.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //강원 전체
-        if(filter_area.contains(Txt_Gangwon.getTag().toString())){
-            Txt_Gangwon.setTextColor(getResources().getColor(R.color.white));
-            Txt_Gangwon.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
-        //제주 전체
-        if(filter_area.contains(Txt_Jeju.getTag().toString())){
-            Txt_Jeju.setTextColor(getResources().getColor(R.color.white));
-            Txt_Jeju.setBackgroundColor(getResources().getColor(R.color.point3));
-            count++;
-        }
+
 
         //정렬 기준
         if(filter_sort.contains(Txt_Distance.getTag().toString())){
@@ -224,6 +301,28 @@ public class Home_Filter extends AppCompatActivity {
             Txt_Grade.setTextColor(getResources().getColor(R.color.white));
             Txt_Grade.setBackgroundColor(getResources().getColor(R.color.point3));
         }
+
+        if(check_foreign.equals("foreign")){
+            Img_Foreign.setImageResource(R.drawable.filter_check);
+        }
+        else{
+            Img_Foreign.setImageResource(R.drawable.filter_uncheck);
+        }
+
+        if(check_alone.equals("alone")){
+            Img_Alone.setImageResource(R.drawable.filter_check);
+        }
+        else{
+            Img_Alone.setImageResource(R.drawable.filter_uncheck);
+        }
+
+        if(check_escape.equals("escape")){
+            Img_Escape.setImageResource(R.drawable.filter_check);
+        }
+        else{
+            Img_Escape.setImageResource(R.drawable.filter_uncheck);
+        }
+
     }
     public void setArea_Event(){
         Txt_All.setOnClickListener(new View.OnClickListener() {
@@ -246,36 +345,32 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Txt_All.setTextColor(getResources().getColor(R.color.white));
-                        Txt_All.setBackgroundColor(getResources().getColor(R.color.point3));
+                    Txt_All.setTextColor(getResources().getColor(R.color.white));
+                    Txt_All.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_All.getTag().toString();
-                        editor = preferences.edit();
-                        editor.putString("filter_area", filter_area);
-                        editor.commit();
+                    filter_area = Txt_All.getTag().toString();
+                    editor = preferences.edit();
+                    editor.putString("filter_area", filter_area);
+                    editor.commit();
 
-                        count++;
+                    count = 1;
 
-                    }
+                    setArea_All_Event();
                 }
             }
         });
-        Txt_Seoul.setOnClickListener(new View.OnClickListener() {
+        Txt_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Seoul.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_1.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Seoul.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Seoul.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_1.setTextColor(getResources().getColor(R.color.black));
+                        Txt_1.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Seoul.getTag().toString(), "");
+                        filter_area = filter_area.replaceAll(Txt_1.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -284,14 +379,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Seoul.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Seoul.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_1.setTextColor(getResources().getColor(R.color.white));
+                        Txt_1.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Seoul.getTag().toString();
+                        filter_area = filter_area+Txt_1.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -302,18 +397,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Hongdae.setOnClickListener(new View.OnClickListener() {
+        Txt_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Hongdae.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_2.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Hongdae.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Hongdae.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_2.setTextColor(getResources().getColor(R.color.black));
+                        Txt_2.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Hongdae.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_2.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -322,14 +417,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Hongdae.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Hongdae.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_2.setTextColor(getResources().getColor(R.color.white));
+                        Txt_2.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Hongdae.getTag().toString();
+                        filter_area = filter_area+Txt_2.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -340,18 +435,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Gangnam.setOnClickListener(new View.OnClickListener() {
+        Txt_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Gangnam.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_3.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gangnam.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Gangnam.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_3.setTextColor(getResources().getColor(R.color.black));
+                        Txt_3.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Gangnam.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_3.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -360,14 +455,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gangnam.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Gangnam.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_3.setTextColor(getResources().getColor(R.color.white));
+                        Txt_3.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Gangnam.getTag().toString();
+                        filter_area = filter_area+Txt_3.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -378,18 +473,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Gundae.setOnClickListener(new View.OnClickListener() {
+        Txt_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Gundae.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_4.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gundae.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Gundae.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_4.setTextColor(getResources().getColor(R.color.black));
+                        Txt_4.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Gundae.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_4.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -398,14 +493,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gundae.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Gundae.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_4.setTextColor(getResources().getColor(R.color.white));
+                        Txt_4.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Gundae.getTag().toString();
+                        filter_area = filter_area+Txt_4.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -416,18 +511,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Geonggi.setOnClickListener(new View.OnClickListener() {
+        Txt_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Geonggi.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_5.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Geonggi.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Geonggi.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_5.setTextColor(getResources().getColor(R.color.black));
+                        Txt_5.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Geonggi.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_5.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -436,14 +531,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Geonggi.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Geonggi.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_5.setTextColor(getResources().getColor(R.color.white));
+                        Txt_5.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Geonggi.getTag().toString();
+                        filter_area = filter_area+Txt_5.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -454,18 +549,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Bupung.setOnClickListener(new View.OnClickListener() {
+        Txt_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Bupung.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_6.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Bupung.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Bupung.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_6.setTextColor(getResources().getColor(R.color.black));
+                        Txt_6.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Bupung.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_6.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -475,14 +570,14 @@ public class Home_Filter extends AppCompatActivity {
 
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Bupung.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Bupung.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_6.setTextColor(getResources().getColor(R.color.white));
+                        Txt_6.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Bupung.getTag().toString();
+                        filter_area = filter_area+Txt_6.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -493,18 +588,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Incheon.setOnClickListener(new View.OnClickListener() {
+        Txt_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Incheon.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_7.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Incheon.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Incheon.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_7.setTextColor(getResources().getColor(R.color.black));
+                        Txt_7.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Incheon.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_7.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -513,14 +608,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Incheon.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Incheon.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_7.setTextColor(getResources().getColor(R.color.white));
+                        Txt_7.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Incheon.getTag().toString();
+                        filter_area = filter_area+Txt_7.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -531,18 +626,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Suwon.setOnClickListener(new View.OnClickListener() {
+        Txt_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Suwon.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_8.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Suwon.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Suwon.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_8.setTextColor(getResources().getColor(R.color.black));
+                        Txt_8.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Suwon.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_8.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -551,14 +646,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Suwon.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Suwon.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_8.setTextColor(getResources().getColor(R.color.white));
+                        Txt_8.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Suwon.getTag().toString();
+                        filter_area = filter_area+Txt_8.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -569,18 +664,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Ansan.setOnClickListener(new View.OnClickListener() {
+        Txt_9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Ansan.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_9.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Ansan.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Ansan.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_9.setTextColor(getResources().getColor(R.color.black));
+                        Txt_9.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Ansan.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_9.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -589,14 +684,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Ansan.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Ansan.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_9.setTextColor(getResources().getColor(R.color.white));
+                        Txt_9.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Ansan.getTag().toString();
+                        filter_area = filter_area+Txt_9.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -607,18 +702,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Busan.setOnClickListener(new View.OnClickListener() {
+        Txt_10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Busan.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_10.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Busan.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Busan.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_10.setTextColor(getResources().getColor(R.color.black));
+                        Txt_10.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Busan.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_10.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -627,14 +722,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Busan.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Busan.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_10.setTextColor(getResources().getColor(R.color.white));
+                        Txt_10.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Busan.getTag().toString();
+                        filter_area = filter_area+Txt_10.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -645,18 +740,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Daegu.setOnClickListener(new View.OnClickListener() {
+        Txt_11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Daegu.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_11.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Daegu.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Daegu.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_11.setTextColor(getResources().getColor(R.color.black));
+                        Txt_11.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Daegu.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_11.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -665,14 +760,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Daegu.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Daegu.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_11.setTextColor(getResources().getColor(R.color.white));
+                        Txt_11.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Daegu.getTag().toString();
+                        filter_area = filter_area+Txt_11.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -683,18 +778,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Ulsan.setOnClickListener(new View.OnClickListener() {
+        Txt_12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Ulsan.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_12.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Ulsan.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Ulsan.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_12.setTextColor(getResources().getColor(R.color.black));
+                        Txt_12.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Ulsan.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_12.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -703,14 +798,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Ulsan.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Ulsan.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_12.setTextColor(getResources().getColor(R.color.white));
+                        Txt_12.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Ulsan.getTag().toString();
+                        filter_area = filter_area+Txt_12.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -721,18 +816,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Dageon.setOnClickListener(new View.OnClickListener() {
+        Txt_13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Dageon.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_13.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Dageon.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Dageon.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_13.setTextColor(getResources().getColor(R.color.black));
+                        Txt_13.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Dageon.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_13.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -741,14 +836,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Dageon.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Dageon.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_13.setTextColor(getResources().getColor(R.color.white));
+                        Txt_13.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Dageon.getTag().toString();
+                        filter_area = filter_area+Txt_13.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -759,18 +854,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Gungju.setOnClickListener(new View.OnClickListener() {
+        Txt_14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Gungju.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_14.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gungju.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Gungju.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_14.setTextColor(getResources().getColor(R.color.black));
+                        Txt_14.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Gungju.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_14.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -779,14 +874,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gungju.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Gungju.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_14.setTextColor(getResources().getColor(R.color.white));
+                        Txt_14.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Gungju.getTag().toString();
+                        filter_area = filter_area+Txt_14.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -797,18 +892,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Gyeongsang.setOnClickListener(new View.OnClickListener() {
+        Txt_15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Gyeongsang.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_15.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gyeongsang.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Gyeongsang.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_15.setTextColor(getResources().getColor(R.color.black));
+                        Txt_15.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Gyeongsang.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_15.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -817,14 +912,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gyeongsang.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Gyeongsang.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_15.setTextColor(getResources().getColor(R.color.white));
+                        Txt_15.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Gyeongsang.getTag().toString();
+                        filter_area = filter_area+Txt_15.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -835,18 +930,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Jenla.setOnClickListener(new View.OnClickListener() {
+        Txt_16.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Jenla.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_16.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Jenla.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Jenla.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_16.setTextColor(getResources().getColor(R.color.black));
+                        Txt_16.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Jenla.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_16.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -855,14 +950,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Jenla.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Jenla.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_16.setTextColor(getResources().getColor(R.color.white));
+                        Txt_16.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Jenla.getTag().toString();
+                        filter_area = filter_area+Txt_16.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -873,18 +968,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Chungcheong.setOnClickListener(new View.OnClickListener() {
+        Txt_17.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Chungcheong.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_17.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Chungcheong.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Chungcheong.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_17.setTextColor(getResources().getColor(R.color.black));
+                        Txt_17.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Chungcheong.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_17.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -893,14 +988,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Chungcheong.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Chungcheong.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_17.setTextColor(getResources().getColor(R.color.white));
+                        Txt_17.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Chungcheong.getTag().toString();
+                        filter_area = filter_area+Txt_17.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -911,18 +1006,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Gangwon.setOnClickListener(new View.OnClickListener() {
+        Txt_18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Gangwon.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_18.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gangwon.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Gangwon.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_18.setTextColor(getResources().getColor(R.color.black));
+                        Txt_18.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Gangwon.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_18.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -931,14 +1026,14 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Gangwon.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Gangwon.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_18.setTextColor(getResources().getColor(R.color.white));
+                        Txt_18.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Gangwon.getTag().toString();
+                        filter_area = filter_area+Txt_18.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -949,18 +1044,18 @@ public class Home_Filter extends AppCompatActivity {
                 }
             }
         });
-        Txt_Jeju.setOnClickListener(new View.OnClickListener() {
+        Txt_19.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Txt_Jeju.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                if(Txt_19.getCurrentTextColor() == getResources().getColor(R.color.white)){
                     if(count == 1){
                         Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Jeju.setTextColor(getResources().getColor(R.color.black));
-                        Txt_Jeju.setBackgroundColor(getResources().getColor(R.color.white));
+                        Txt_19.setTextColor(getResources().getColor(R.color.black));
+                        Txt_19.setBackgroundColor(getResources().getColor(R.color.white));
 
-                        filter_area = filter_area.replaceAll(Txt_Jeju.getTag().toString(), "");
+                        filter_area = filter_area.replace(Txt_19.getTag().toString(), "");
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -969,14 +1064,280 @@ public class Home_Filter extends AppCompatActivity {
                     }
                 }
                 else{
-                    if(count >= 3){
-                        Toast.makeText(Home_Filter.this, "최대 3개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Txt_Jeju.setTextColor(getResources().getColor(R.color.white));
-                        Txt_Jeju.setBackgroundColor(getResources().getColor(R.color.point3));
+                        Txt_19.setTextColor(getResources().getColor(R.color.white));
+                        Txt_19.setBackgroundColor(getResources().getColor(R.color.point3));
 
-                        filter_area = filter_area+Txt_Jeju.getTag().toString();
+                        filter_area = filter_area+Txt_19.getTag().toString();
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count++;
+                        setArea_AllDelete_Event();
+                    }
+                }
+            }
+        });
+        Txt_20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Txt_20.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                    if(count == 1){
+                        Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_20.setTextColor(getResources().getColor(R.color.black));
+                        Txt_20.setBackgroundColor(getResources().getColor(R.color.white));
+
+                        filter_area = filter_area.replace(Txt_20.getTag().toString(), "");
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count--;
+                    }
+                }
+                else{
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_20.setTextColor(getResources().getColor(R.color.white));
+                        Txt_20.setBackgroundColor(getResources().getColor(R.color.point3));
+
+                        filter_area = filter_area+Txt_20.getTag().toString();
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count++;
+                        setArea_AllDelete_Event();
+                    }
+                }
+            }
+        });
+        Txt_21.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Txt_21.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                    if(count == 1){
+                        Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_21.setTextColor(getResources().getColor(R.color.black));
+                        Txt_21.setBackgroundColor(getResources().getColor(R.color.white));
+
+                        filter_area = filter_area.replace(Txt_21.getTag().toString(), "");
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count--;
+                    }
+                }
+                else{
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_21.setTextColor(getResources().getColor(R.color.white));
+                        Txt_21.setBackgroundColor(getResources().getColor(R.color.point3));
+
+                        filter_area = filter_area+Txt_21.getTag().toString();
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count++;
+                        setArea_AllDelete_Event();
+                    }
+                }
+            }
+        });
+        Txt_22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Txt_22.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                    if(count == 1){
+                        Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_22.setTextColor(getResources().getColor(R.color.black));
+                        Txt_22.setBackgroundColor(getResources().getColor(R.color.white));
+
+                        filter_area = filter_area.replace(Txt_22.getTag().toString(), "");
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count--;
+                    }
+                }
+                else{
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_22.setTextColor(getResources().getColor(R.color.white));
+                        Txt_22.setBackgroundColor(getResources().getColor(R.color.point3));
+
+                        filter_area = filter_area+Txt_22.getTag().toString();
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count++;
+                        setArea_AllDelete_Event();
+                    }
+                }
+            }
+        });
+        Txt_23.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Txt_23.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                    if(count == 1){
+                        Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_23.setTextColor(getResources().getColor(R.color.black));
+                        Txt_23.setBackgroundColor(getResources().getColor(R.color.white));
+
+                        filter_area = filter_area.replace(Txt_23.getTag().toString(), "");
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count--;
+                    }
+                }
+                else{
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_23.setTextColor(getResources().getColor(R.color.white));
+                        Txt_23.setBackgroundColor(getResources().getColor(R.color.point3));
+
+                        filter_area = filter_area+Txt_23.getTag().toString();
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count++;
+                        setArea_AllDelete_Event();
+                    }
+                }
+            }
+        });
+        Txt_24.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Txt_24.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                    if(count == 1){
+                        Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_24.setTextColor(getResources().getColor(R.color.black));
+                        Txt_24.setBackgroundColor(getResources().getColor(R.color.white));
+
+                        filter_area = filter_area.replace(Txt_24.getTag().toString(), "");
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count--;
+                    }
+                }
+                else{
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_24.setTextColor(getResources().getColor(R.color.white));
+                        Txt_24.setBackgroundColor(getResources().getColor(R.color.point3));
+
+                        filter_area = filter_area+Txt_24.getTag().toString();
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count++;
+                        setArea_AllDelete_Event();
+                    }
+                }
+            }
+        });
+        Txt_25.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Txt_25.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                    if(count == 1){
+                        Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_25.setTextColor(getResources().getColor(R.color.black));
+                        Txt_25.setBackgroundColor(getResources().getColor(R.color.white));
+
+                        filter_area = filter_area.replace(Txt_25.getTag().toString(), "");
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count--;
+                    }
+                }
+                else{
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_25.setTextColor(getResources().getColor(R.color.white));
+                        Txt_25.setBackgroundColor(getResources().getColor(R.color.point3));
+
+                        filter_area = filter_area+Txt_25.getTag().toString();
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count++;
+                        setArea_AllDelete_Event();
+                    }
+                }
+            }
+        });
+        Txt_26.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Txt_26.getCurrentTextColor() == getResources().getColor(R.color.white)){
+                    if(count == 1){
+                        Toast.makeText(Home_Filter.this, "최소 1개이상 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_26.setTextColor(getResources().getColor(R.color.black));
+                        Txt_26.setBackgroundColor(getResources().getColor(R.color.white));
+
+                        filter_area = filter_area.replace(Txt_26.getTag().toString(), "");
+                        editor = preferences.edit();
+                        editor.putString("filter_area", filter_area);
+                        editor.commit();
+
+                        count--;
+                    }
+                }
+                else{
+                    if(count >= 5){
+                        Toast.makeText(Home_Filter.this, "최대 5개 선택 가능합니다", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Txt_26.setTextColor(getResources().getColor(R.color.white));
+                        Txt_26.setBackgroundColor(getResources().getColor(R.color.point3));
+
+                        filter_area = filter_area+Txt_26.getTag().toString();
                         editor = preferences.edit();
                         editor.putString("filter_area", filter_area);
                         editor.commit();
@@ -995,7 +1356,6 @@ public class Home_Filter extends AppCompatActivity {
                 Txt_Grade.setTextColor(getResources().getColor(R.color.black));
                 Txt_Grade.setBackgroundColor(getResources().getColor(R.color.white));
 
-                filter_area = filter_area+Txt_Jeju.getTag().toString();
                 editor = preferences.edit();
                 editor.putString("filter_sort", "distance");
                 editor.commit();
@@ -1009,7 +1369,6 @@ public class Home_Filter extends AppCompatActivity {
                 Txt_Distance.setTextColor(getResources().getColor(R.color.black));
                 Txt_Distance.setBackgroundColor(getResources().getColor(R.color.white));
 
-                filter_area = filter_area+Txt_Jeju.getTag().toString();
                 editor = preferences.edit();
                 editor.putString("filter_sort", "grade");
                 editor.commit();
@@ -1021,13 +1380,135 @@ public class Home_Filter extends AppCompatActivity {
             Txt_All.setTextColor(getResources().getColor(R.color.black));
             Txt_All.setBackgroundColor(getResources().getColor(R.color.white));
 
-            filter_area = filter_area.replaceAll(Txt_All.getTag().toString(), "");
+            filter_area = filter_area.replace(Txt_All.getTag().toString(), "");
             editor = preferences.edit();
             editor.putString("filter_area", filter_area);
             editor.commit();
 
             count--;
         }
+    }
+    public void setArea_All_Event(){
+        Txt_1.setTextColor(getResources().getColor(R.color.black));
+        Txt_1.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_2.setTextColor(getResources().getColor(R.color.black));
+        Txt_2.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_3.setTextColor(getResources().getColor(R.color.black));
+        Txt_3.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_4.setTextColor(getResources().getColor(R.color.black));
+        Txt_4.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_5.setTextColor(getResources().getColor(R.color.black));
+        Txt_5.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_6.setTextColor(getResources().getColor(R.color.black));
+        Txt_6.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_7.setTextColor(getResources().getColor(R.color.black));
+        Txt_7.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_8.setTextColor(getResources().getColor(R.color.black));
+        Txt_8.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_9.setTextColor(getResources().getColor(R.color.black));
+        Txt_9.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_10.setTextColor(getResources().getColor(R.color.black));
+        Txt_10.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_11.setTextColor(getResources().getColor(R.color.black));
+        Txt_11.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_12.setTextColor(getResources().getColor(R.color.black));
+        Txt_12.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_13.setTextColor(getResources().getColor(R.color.black));
+        Txt_13.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_14.setTextColor(getResources().getColor(R.color.black));
+        Txt_14.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_15.setTextColor(getResources().getColor(R.color.black));
+        Txt_15.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_16.setTextColor(getResources().getColor(R.color.black));
+        Txt_16.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_17.setTextColor(getResources().getColor(R.color.black));
+        Txt_17.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_18.setTextColor(getResources().getColor(R.color.black));
+        Txt_18.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_19.setTextColor(getResources().getColor(R.color.black));
+        Txt_19.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_20.setTextColor(getResources().getColor(R.color.black));
+        Txt_20.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_21.setTextColor(getResources().getColor(R.color.black));
+        Txt_21.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_22.setTextColor(getResources().getColor(R.color.black));
+        Txt_22.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_23.setTextColor(getResources().getColor(R.color.black));
+        Txt_23.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_24.setTextColor(getResources().getColor(R.color.black));
+        Txt_24.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_25.setTextColor(getResources().getColor(R.color.black));
+        Txt_25.setBackgroundColor(getResources().getColor(R.color.white));
+        Txt_26.setTextColor(getResources().getColor(R.color.black));
+        Txt_26.setBackgroundColor(getResources().getColor(R.color.white));
+    }
+    public void setCheck_Event(){
+        Layout_Foreign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(check_foreign.equals("foreign")){
+                    Img_Foreign.setImageResource(R.drawable.filter_uncheck);
+                    check_foreign = "";
+
+                    editor = preferences.edit();
+                    editor.putString("check_foreign", check_foreign);
+                    editor.commit();
+                }
+                else{
+                    Img_Foreign.setImageResource(R.drawable.filter_check);
+                    check_foreign = "foreign";
+
+                    editor = preferences.edit();
+                    editor.putString("check_foreign", check_foreign);
+                    editor.commit();
+                }
+            }
+        });
+
+        Layout_Alone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(check_alone.equals("alone")){
+                    Img_Alone.setImageResource(R.drawable.filter_uncheck);
+                    check_alone = "";
+
+                    editor = preferences.edit();
+                    editor.putString("check_alone", check_alone);
+                    editor.commit();
+                }
+                else{
+                    Img_Alone.setImageResource(R.drawable.filter_check);
+                    check_alone = "alone";
+
+                    editor = preferences.edit();
+                    editor.putString("check_alone", check_alone);
+                    editor.commit();
+                }
+            }
+        });
+
+        Layout_Escape.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(check_escape.equals("escape")){
+                    Img_Escape.setImageResource(R.drawable.filter_uncheck);
+                    check_escape = "";
+
+                    editor = preferences.edit();
+                    editor.putString("check_escape", check_escape);
+                    editor.commit();
+                }
+                else{
+                    Img_Escape.setImageResource(R.drawable.filter_check);
+                    check_escape = "escape";
+
+                    editor = preferences.edit();
+                    editor.putString("check_escape", check_escape);
+                    editor.commit();
+                }
+            }
+        });
+
     }
     private void setImgBack() {
         Img_Back.setOnClickListener(new View.OnClickListener() {

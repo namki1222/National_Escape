@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +36,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static blackcap.nationalescape.Activity.MainActivity.User_Pk;
 import static blackcap.nationalescape.Activity.MainActivity.act_main;
 
-public class Fragment_main_favorite extends android.support.v4.app.Fragment {
+public class Fragment_main_favorite extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -179,7 +181,8 @@ public class Fragment_main_favorite extends android.support.v4.app.Fragment {
                     gps_y = Double.toString(gps.getLongitude());
                 } else {
                     // GPS 를 사용할수 없으므로
-                    gps.showSettingsAlert();
+                    gps_x = 37.497942+"";
+                    gps_y = 127.0254323+"";
                 }
 
                 //찜한 업체 리스트 데이터 셋팅

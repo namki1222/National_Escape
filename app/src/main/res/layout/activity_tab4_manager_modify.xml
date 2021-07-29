@@ -28,7 +28,7 @@
             android:textSize="16sp" />
 
     </RelativeLayout>
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
@@ -266,10 +266,10 @@
                             android:textColor="@color/white"
                             android:textSize="14sp" />
 
-                        <android.support.v7.widget.RecyclerView
+                        <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/list_menu"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -489,6 +489,86 @@
 
                                 <ImageView
                                     android:id="@+id/img_sub6_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub7_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub8_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub9_cancel"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/manager_imgdelete" />
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="55dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp">
+
+                                <ImageView
+                                    android:id="@+id/img_sub10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@color/gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_sub10_cancel"
                                     android:layout_width="15dp"
                                     android:layout_height="15dp"
                                     android:layout_alignParentRight="true"
@@ -731,5 +811,5 @@
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

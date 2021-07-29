@@ -15,35 +15,30 @@
             android:adjustViewBounds="true"
             android:src="@drawable/tab_toolbar" />
     </LinearLayout>
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_layout">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="20dp">
-
+                android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="50dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@color/point"
                     android:orientation="vertical">
-
                     //프로필 화면
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -66,7 +61,7 @@
                                 android:fontFamily="@font/notosans_regular"
                                 android:includeFontPadding="false"
                                 android:text="로그인이 필요합니다."
-                                android:textColor="@color/black"
+                                android:textColor="@color/white"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
@@ -76,429 +71,482 @@
                             android:background="@color/line" />
                     </LinearLayout>
 
-                    //내 리뷰 보기 화면
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                        android:includeFontPadding="false"
+                        android:text="방탈출 포인트"
+                        android:textColor="#93959a"
+                        android:textSize="12sp"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <TextView
+                        android:id="@+id/txt_mypoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                        android:includeFontPadding="false"
+                        android:text="1234P"
+                        android:textColor="#ffff"
+                        android:textSize="30sp" />
+
+                    <ImageView
+                        android:id="@+id/img_pointlist"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="15dp"
+                        android:src="@drawable/frag4_booktitle" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp">
 
                     <LinearLayout
-                        android:id="@+id/layout_myreview"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-
-                        <RelativeLayout
+                        //내 리뷰 보기 화면
+                        <LinearLayout
+                            android:id="@+id/layout_myreview"
                             android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="나의 탈출일지"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="나의 탈출일지"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
+                        //리뷰 검색 화면
 
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
-
-                        </RelativeLayout>
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/layout_searchReview"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
-                    </LinearLayout>
-                    //리뷰 검색 화면
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/layout_searchReview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="탈출일지 엿보기"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="탈출일지 엿보기"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
 
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
-
-                        </RelativeLayout>
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/layout_company_favorite"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/layout_company_favorite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="찜한 카페"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="찜한 카페"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
 
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
+                        //테마 찜 목록 화면
 
-                        </RelativeLayout>
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/layout_theme_favorite"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                    //테마 찜 목록 화면
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/layout_theme_favorite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="찜한 테마"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="찜한 테마"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
 
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
+                        //공지사항
 
-                        </RelativeLayout>
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/layout_notice"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                    //공지사항
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/layout_notice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="공지사항"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="공지사항"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
 
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
+                        //문의하기
 
-                        </RelativeLayout>
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/layout_suggest"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                    //문의하기
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/layout_suggest"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="문의하기"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="문의하기"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
+                        //설정 화면
 
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
-
-                        </RelativeLayout>
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/layout_setting"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
-                    </LinearLayout>
-                    //설정 화면
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/layout_setting"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="설정"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="설정"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
+                        //매장 등록
 
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
-
-                        </RelativeLayout>
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/layout_company_register"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
-                    </LinearLayout>
-                    //매장 등록
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/layout_company_register"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="매장등록"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="매장등록"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
 
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
+                        //매장 관리
 
-                        </RelativeLayout>
-
-                        <TextView
+                        <LinearLayout
+                            android:id="@+id/layout_company_manage"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
-                    //매장 관리
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="55dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/layout_company_manage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                                    android:includeFontPadding="false"
+                                    android:text="매장관리"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/tab4_next" />
+
+                            </RelativeLayout>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                                android:includeFontPadding="false"
-                                android:text="매장관리"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
-
-                            <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/tab4_next" />
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/line" />
+                                android:layout_width="match_parent"
+                                android:layout_height="1px"
+                                android:background="@color/line" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
+                //하단 회사 정보
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ececec"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:includeFontPadding="false"
+                        android:text="욜로가이즈(yologuys)"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                        android:includeFontPadding="false"
+                        android:text="대표이사 : 조준호"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                        android:includeFontPadding="false"
+                        android:text="사업자등록번호 : 298-81-01094  통신판매업 : 000000000000"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                        android:includeFontPadding="false"
+                        android:text="메일 : escaperoom@yologuys.com"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                        android:includeFontPadding="false"
+                        android:text="고객센터 : 02-6337-3400"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="@font/notosanscjkkr_demilight_cus"
+                        android:includeFontPadding="false"
+                        android:text="주소 : 서울특별시 서초구 강남대로 369 12층 1378호"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+                </LinearLayout>
             </LinearLayout>
-
-            //하단 회사 정보
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ececec"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/notosans_regular"
-                    android:includeFontPadding="false"
-                    android:text="욜로가이즈(yologuys)"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                    android:includeFontPadding="false"
-                    android:text="대표이사 : 조준호"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                    android:includeFontPadding="false"
-                    android:text="사업자등록번호 : 298-81-01094  통신판매업 : 000000000000"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                    android:includeFontPadding="false"
-                    android:text="메일 : escaperoom@yologuys.com"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                    android:includeFontPadding="false"
-                    android:text="고객센터 : 02-6337-3400"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:fontFamily="@font/notosanscjkkr_demilight_cus"
-                    android:includeFontPadding="false"
-                    android:text="주소 : 서울특별시 서초구 강남대로 369 12층 1378호"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

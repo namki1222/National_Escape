@@ -4,10 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -16,6 +12,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +40,7 @@ import blackcap.nationalescape.Uitility.Progressbar_wheel;
 import static android.content.Context.MODE_PRIVATE;
 import static blackcap.nationalescape.Activity.MainActivity.User_Pk;
 
-public class Fragment_main3 extends android.support.v4.app.Fragment {
+public class Fragment_main3 extends Fragment {
     private SharedPreferences preferences; //캐쉬 데이터 생성
     private SharedPreferences.Editor editor;
 
@@ -53,7 +54,8 @@ public class Fragment_main3 extends android.support.v4.app.Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView List_Theme;
 
-    private String filter_category = "", filter_tools = "", filter_person = "", filter_level = "", filter_activity = "";
+    private String filter_category = "", filter_tools = "", filter_person = "", filter_level = "", filter_activity = "", filter_area = "", filter_myreview = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -168,20 +170,19 @@ public class Fragment_main3 extends android.support.v4.app.Fragment {
                 filter_person = preferences.getString("filter_theme_person", "2345");
                 filter_level = preferences.getString("filter_theme_level", "12345");
                 filter_activity = preferences.getString("filter_theme_activity", "123");
+                filter_area = preferences.getString("filter_theme_area", "전국");
+                filter_myreview = preferences.getString("filter_theme_myreview", "off");
 
-                Log.i("필터1", filter_category);
-                Log.i("필터2", filter_tools);
-                Log.i("필터3", filter_person);
-                Log.i("필터4", filter_level);
-                Log.i("필터5", filter_activity);
+                Log.i("테스트77", filter_category);
+                Log.i("테스트77", filter_tools);
+                Log.i("테스트77", filter_myreview);
                 //홈 업체 리스트 데이터 셋팅
                 HttpClient http = new HttpClient();
                 JsonParserList jsonParserList = new JsonParserList();
 
-                String result_theme = http.HttpClient("Web_Escape", "Theme_List.jsp", filter_category, filter_tools, filter_person, filter_level, filter_activity);
-                parseredData_theme = jsonParserList.jsonParserList_Data11(result_theme);
-
-                Log.i("테스트3", parseredData_theme.length+"");
+                String result_theme = http.HttpClient("Web_Escape", "Theme_List_v5.jsp", filter_category, filter_tools, filter_person, filter_level, filter_activity, filter_area, User_Pk, filter_myreview);
+                parseredData_theme = jsonParserList.jsonParserList_Data12(result_theme);
+                Log.i("ㅌㅌ",result_theme);
                 theme_models = new ArrayList<Theme_Model>();
                 for (int i = 0; i < parseredData_theme.length; i++) {
                     String theme_pk = parseredData_theme[i][0];
@@ -195,7 +196,8 @@ public class Fragment_main3 extends android.support.v4.app.Fragment {
                     String person = parseredData_theme[i][8];
                     String tool = parseredData_theme[i][9];
                     String activity = parseredData_theme[i][10];
-                    theme_models.add(new Theme_Model(getActivity(),theme_pk, company_pk, img, title, intro, category, grade, level, person, tool, activity));
+                    String deadtime = parseredData_theme[i][11];
+                    theme_models.add(new Theme_Model(getActivity(),theme_pk, company_pk, img, title, intro, category, grade, level, person, tool, activity, deadtime));
                 }
                 return "succed";
             } catch (Exception e) {
@@ -214,9 +216,12 @@ public class Fragment_main3 extends android.support.v4.app.Fragment {
 //            layoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
 //            layoutManager1.scrollToPosition(0);
             //베스트 무료체험 어댑터 셋팅
-            tab0_theme_adapter = new Tab3_Theme_Adapter(getActivity(), theme_models);
-            List_Theme.setLayoutManager(layoutManager1);
-            List_Theme.setAdapter(tab0_theme_adapter);
+            if(getContext() != null){
+                tab0_theme_adapter = new Tab3_Theme_Adapter(getActivity(), theme_models);
+                List_Theme.setLayoutManager(layoutManager1);
+                List_Theme.setAdapter(tab0_theme_adapter);
+            }
+
 
             progressDialog.dismiss();
         }
@@ -242,7 +247,7 @@ public class Fragment_main3 extends android.support.v4.app.Fragment {
                 HttpClient http = new HttpClient();
                 JsonParserList jsonParserList = new JsonParserList();
                 String result = http.HttpClient("Web_Escape", "Theme_List_Search.jsp", params);
-                parseredData = jsonParserList.jsonParserList_Data11(result);
+                parseredData = jsonParserList.jsonParserList_Data12(result);
 
                 theme_models = new ArrayList<Theme_Model>();
                 for (int i = 0; i < parseredData.length; i++) {
@@ -257,7 +262,8 @@ public class Fragment_main3 extends android.support.v4.app.Fragment {
                     String person = parseredData[i][8];
                     String tool = parseredData[i][9];
                     String activity = parseredData[i][10];
-                    theme_models.add(new Theme_Model(getActivity(),theme_pk, company_pk, img, title, intro, category, grade, level, person, tool, activity));
+                    String deadtime = parseredData[i][11];
+                    theme_models.add(new Theme_Model(getActivity(),theme_pk, company_pk, img, title, intro, category, grade, level, person, tool, activity, deadtime));
                 }
                 return "succed";
             } catch (Exception e) {

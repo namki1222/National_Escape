@@ -2,25 +2,32 @@ package blackcap.nationalescape.Activity.tab3;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import blackcap.nationalescape.Activity.tab1.Book_Chapter1;
 import blackcap.nationalescape.Activity.tab1.Home_Focus;
 import blackcap.nationalescape.Activity.user.Login;
 import blackcap.nationalescape.Adapter.Theme_Focus_Review_Adapter;
@@ -32,8 +39,11 @@ import blackcap.nationalescape.Uitility.JsonParserList;
 import blackcap.nationalescape.Uitility.Progressbar_wheel;
 import blackcap.nationalescape.Uitility.StartRange;
 import blackcap.nationalescape.Uitility.levelRange;
+import me.drakeet.materialdialog.MaterialDialog;
 
+import static blackcap.nationalescape.Activity.MainActivity.bol_main;
 import static blackcap.nationalescape.Activity.MainActivity.gps_main;
+import static blackcap.nationalescape.Activity.MainActivity.mInterstitialAd;
 
 public class Theme_Focus extends AppCompatActivity {
     SharedPreferences preferences; //캐쉬 데이터 생성
@@ -46,9 +56,11 @@ public class Theme_Focus extends AppCompatActivity {
     private ImageView Img_Person1, Img_Person2, Img_Person3;
     private ImageView Img_Activity, Img_Tool;
 
-    private String str_theme_pk = "",str_company_pk = "", str_img = "", str_title = "", str_intro = "";
+    public static String str_theme_focus_title = "";
+    private String str_theme_pk = "",str_company_pk = "", str_img = "", str_title = "", str_intro = "", str_company_title = "", str_deadtme = "", str_time = ".";
     private String str_category = "",str_grade = "", str_level = "", str_person = "", str_tool = "";
-    private String str_activity = "",str_intro_focus = "", str_homepage = "", str_favorite = "", str_nickname = "", str_exp = "";
+    private String str_activity = "",str_intro_focus = "", str_homepage = "", str_favorite = "", str_nickname = "", str_exp = "", str_bookflag = "", str_bookpage = "";
+    private String str_comment_nick = "", str_comment_contents = "";
 
     private TextView Txt_Gradeavg;
     private TextView Txt_Review_GradeAvg, Txt_Review_Nickname;
@@ -57,12 +69,15 @@ public class Theme_Focus extends AppCompatActivity {
     private ImageView Img_Review_Star1, Img_Review_Star2, Img_Review_Star3, Img_Review_Star4, Img_Review_Star5;
     private ImageView Img_Favorite;
     private RecyclerView List_Review;
-    private TextView Txt_Theme_Focus;
+    private TextView Txt_Theme_Focus, Txt_Deadtime;
+
+    private LinearLayout Layout_Comment;
+    private TextView Txt_Comment_Nick, Txt_Comment_Contents;
 
     public static ArrayList<Theme_Review_Model> theme_review_models;
     public static Theme_Review_Adapter theme_review_adapter;
 //    private TextView Txt_Review_Nickname, Txt_Review_Focus;
-    private LinearLayout Layout_Company, Layout_Review_Write;
+    private LinearLayout Layout_Book, Layout_Company, Layout_Review_Write;
 
     private boolean favorite = false;
     String gps_x = "", gps_y = "";
@@ -75,8 +90,6 @@ public class Theme_Focus extends AppCompatActivity {
         setContentView(R.layout.activity_tab3_focus);
 
         init();
-        //카페로 이동
-        setComapny_Event();
         //뒤로가기
         setImgBack();
         setReview_Focus();
@@ -90,6 +103,9 @@ public class Theme_Focus extends AppCompatActivity {
 
         async_review3 = new Async_Review3();
         async_review3.execute();
+
+        //카페로 이동
+        setComapny_Event();
     }
     public void init(){
         preferences = getSharedPreferences("escape", MODE_PRIVATE);
@@ -117,6 +133,8 @@ public class Theme_Focus extends AppCompatActivity {
         Txt_Title1 = (TextView)findViewById(R.id.txt_title1);
         Txt_Intro = (TextView)findViewById(R.id.txt_intro);
         Txt_IntroFocus = (TextView)findViewById(R.id.txt_introfocus);
+        Txt_Deadtime = (TextView)findViewById(R.id.txt_deadtime);
+
         Img_Back = (ImageView)findViewById(R.id.img_back);
 
         Txt_Review_GradeAvg = (TextView)findViewById(R.id.txt_point);
@@ -137,12 +155,29 @@ public class Theme_Focus extends AppCompatActivity {
         Img_Tool = (ImageView)findViewById(R.id.img_tool);
 
         Layout_Company = (LinearLayout)findViewById(R.id.layout_company);
+        Layout_Book = (LinearLayout)findViewById(R.id.layout_book);
         Layout_Review_Write = (LinearLayout)findViewById(R.id.layout_review_write);
         Txt_Date = (TextView)findViewById(R.id.txt_date);
         Img_Experience = (ImageView)findViewById(R.id.img_experience);
 
         List_Review = (RecyclerView)findViewById(R.id.list_review);
         Txt_Theme_Focus = (TextView)findViewById(R.id.txt_theme_focus);
+
+        Layout_Comment = (LinearLayout)findViewById(R.id.layout_comment);
+        Txt_Comment_Nick = (TextView)findViewById(R.id.txt_comment_nick);
+        Txt_Comment_Contents = (TextView)findViewById(R.id.txt_comment_comment);
+
+        if(bol_main == false){
+            if(mInterstitialAd != null){
+                if(mInterstitialAd.isLoaded()){
+                    mInterstitialAd.show();
+                }
+                bol_main = true;
+            }
+        }
+
+        HttpClient http = new HttpClient();
+        http.HttpClient("Web_Escape", "Theme_Visit.jsp",str_theme_pk);
     }
     @Override
     protected void onRestart() {
@@ -159,8 +194,33 @@ public class Theme_Focus extends AppCompatActivity {
         Layout_Company.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //카페 바로가기일 경우
                 Async_Companygo async_companygo = new Async_Companygo();
                 async_companygo.execute();
+            }
+        });
+        Layout_Book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HttpClient http = new HttpClient();
+                http.HttpClient("Web_Escape", "Home_Focus_Visit.jsp",str_company_pk, "book", setNowTime());
+                if(str_bookflag.equals("true")){
+                    Intent intent = new Intent(Theme_Focus.this, Book_Chapter1.class);
+                    intent.putExtra("Company_Pk", str_company_pk);
+                    intent.putExtra("Company_Title", str_company_title);
+                    intent.putExtra("Theme_Pk", str_theme_pk);
+                    intent.putExtra("Theme_Title", str_title);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                }
+                else{
+                    setDialog_check();
+                }
+
+
+                //카페 바로가기일 경우
+                /*Async_Companygo async_companygo = new Async_Companygo();
+                async_companygo.execute();*/
             }
         });
     }
@@ -224,6 +284,9 @@ public class Theme_Focus extends AppCompatActivity {
                         Intent intent = new Intent(Theme_Focus.this, Theme_Focus_Write.class);
                         intent.putExtra("Theme_Pk", str_theme_pk);
                         intent.putExtra("Experience", str_exp);
+                        intent.putExtra("User_Time", str_time);
+                        intent.putExtra("Theme_Time", str_deadtme);
+                        intent.putExtra("Theme_Title", str_title);
                         startActivity(intent);
                         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                     }
@@ -238,6 +301,9 @@ public class Theme_Focus extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Theme_Focus.this, Theme_Focus_Review.class);
                 intent.putExtra("Theme_Pk", str_theme_pk);
+                intent.putExtra("User_Time", str_time);
+                intent.putExtra("Theme_Time", str_deadtme);
+                intent.putExtra("Company_Title", str_company_title);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
@@ -262,8 +328,9 @@ public class Theme_Focus extends AppCompatActivity {
                 HttpClient http = new HttpClient();
                 JsonParserList jsonParserList = new JsonParserList();
 
-                String result3 = http.HttpClient("Web_Escape", "Theme_Focus_Review_3.jsp", str_theme_pk, User_Pk);
-                parseredData_reivew = jsonParserList.jsonParserList_Data10(result3);
+                String result3 = http.HttpClient("Web_Escape", "Theme_Focus_Review_3_v4.jsp", str_theme_pk, User_Pk);
+
+                parseredData_reivew = jsonParserList.jsonParserList_Data16(result3);
 
                 theme_review_models = new ArrayList<Theme_Review_Model>();
                 for (int i = 0; i < parseredData_reivew.length; i++) {
@@ -277,10 +344,19 @@ public class Theme_Focus extends AppCompatActivity {
                     String time = parseredData_reivew[i][7];
                     String hint = parseredData_reivew[i][8];
                     String experience = parseredData_reivew[i][9];
-                    theme_review_models.add(new Theme_Review_Model(Theme_Focus.this, User_Pk, review_user_pk, nickname, grage, content, date, str_theme_pk, level, status, time, hint, experience, "default"));
+                    String recommend_flag = parseredData_reivew[i][10];
+                    String recommend_count = parseredData_reivew[i][11];
+                    String grade_flag = parseredData_reivew[i][12];
+                    String bol_owner = parseredData_reivew[i][13];
+                    String owner_date = parseredData_reivew[i][14];
+                    String owner_memo = parseredData_reivew[i][15];
+
+                    theme_review_models.add(new Theme_Review_Model(Theme_Focus.this, User_Pk, review_user_pk, nickname, grage, content, date, str_theme_pk, level, status, time, hint, experience, "default", str_time, str_deadtme, recommend_flag, recommend_count, grade_flag, bol_owner, str_company_title, owner_date, owner_memo ,"desc"));
+
                 }
                 return "succed";
             } catch (Exception e) {
+                Log.i("테스트", e+"에러");
                 e.printStackTrace();
                 return "failed";
             }
@@ -368,7 +444,7 @@ public class Theme_Focus extends AppCompatActivity {
                 intent.putExtra("Address", str_address);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-                Log.i("테스트", str_distance);
+
             }
             else{
                 Toast.makeText(Theme_Focus.this, "등록되지 않은 업체입니다.", Toast.LENGTH_SHORT).show();
@@ -395,17 +471,18 @@ public class Theme_Focus extends AppCompatActivity {
                 //공지사항 리스트 데이터 셋팅
                 HttpClient http = new HttpClient();
                 JsonParserList jsonParserList = new JsonParserList();
-                parseredData = jsonParserList.jsonParserList_Data14(http.HttpClient("Web_Escape", "Theme_Focus.jsp", str_theme_pk, User_Pk));
+                parseredData = jsonParserList.jsonParserList_Data21(http.HttpClient("Web_Escape", "Theme_Focus_v2.jsp", str_theme_pk, User_Pk));
 
 //                String result3 = http.HttpClient("Web_Escape", "Home_Focus_Review_3.jsp",params[0], User_Pk);
 //                parseredData_reivew = jsonParserList.jsonParserList_Data5(result3);
 
-                String result4 = http.HttpClient("Web_Escape", "User.jsp",User_Pk);
-                parseredData_User = jsonParserList.jsonParserList_Data8(result4);
+                String result4 = http.HttpClient("Web_Escape", "User_v3.jsp",User_Pk, "yologuys12");
+                parseredData_User = jsonParserList.jsonParserList_Data13(result4);
 
                 str_company_pk = parseredData[0][1];
                 str_img = parseredData[0][2];
                 str_title = parseredData[0][3];
+                str_theme_focus_title = parseredData[0][3];
                 str_intro = parseredData[0][4];
                 str_category = parseredData[0][5];
                 str_grade = parseredData[0][6];
@@ -416,7 +493,14 @@ public class Theme_Focus extends AppCompatActivity {
                 str_intro_focus = parseredData[0][11];
                 str_homepage = parseredData[0][12];
                 str_favorite = parseredData[0][13];
+                str_company_title = parseredData[0][14];
+                str_deadtme = parseredData[0][16];
+                str_bookflag = parseredData[0][17];
+                str_bookpage = parseredData[0][18];
+                str_comment_nick = parseredData[0][19];
+                str_comment_contents = parseredData[0][20];
 
+                Log.i("테스2", str_company_title);
 //                review_models = new ArrayList<Review_Model>();
 //                for (int i = 0; i < parseredData_reivew.length; i++) {
 //                    String nickname = parseredData_reivew[i][0];
@@ -429,6 +513,13 @@ public class Theme_Focus extends AppCompatActivity {
 
                 str_nickname = parseredData_User[0][2];
                 str_exp = parseredData_User[0][7];
+                if(User_Pk.equals(".")){
+                    str_time = "extra";
+                }
+                else{
+                    str_time = parseredData_User[0][12];
+                }
+
                 return "succed";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -466,6 +557,7 @@ public class Theme_Focus extends AppCompatActivity {
             }
 
             Txt_Date.setText(setNowTime());
+            Txt_Deadtime.setText("제한시간 : "+ str_deadtme+"분");
             //추천 인원
             if(str_person.contains("2")){
                 if(Img_Person1.getVisibility() == View.GONE){
@@ -580,8 +672,14 @@ public class Theme_Focus extends AppCompatActivity {
             else if(str_exp.equals("5")){
                 Img_Experience.setImageResource(R.drawable.user_medal_201_300);
             }
-            else{
-                Img_Experience.setImageResource(R.drawable.user_medal_301);
+            else if(str_exp.equals("6")){
+                Img_Experience.setImageResource(R.drawable.user_medal_301_500);
+            }
+            else if(str_exp.equals("7")){
+                Img_Experience.setImageResource(R.drawable.user_medal_501_1000);
+            }
+            else if(str_exp.equals("8")){
+                Img_Experience.setImageResource(R.drawable.user_medal_1000);
             }
 
             if(str_favorite.equals("true")){
@@ -593,6 +691,15 @@ public class Theme_Focus extends AppCompatActivity {
                 favorite = false;
                 Glide.with(Theme_Focus.this).load(R.drawable.tab1_favorite)
                         .into(Img_Favorite);
+            }
+
+            if(!str_comment_nick.equals("") && !str_comment_contents.equals("")){
+                Layout_Comment.setVisibility(View.VISIBLE);
+                Txt_Comment_Nick.setText(str_comment_nick);
+                Txt_Comment_Contents.setText(str_comment_contents);
+            }
+            else{
+                Layout_Comment.setVisibility(View.GONE);
             }
             //리뷰 셋팅
 //            Txt_Review_GradeAvg.setText(str_grade_avg+"점");
@@ -660,6 +767,32 @@ public class Theme_Focus extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
         return sdf.format(date)+"";
+    }
+    public void setDialog_check(){
+        LayoutInflater inflater = (LayoutInflater)Theme_Focus.this.getSystemService(Home_Focus.LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.dialog_bookflag, (ViewGroup)findViewById(R.id.root));
+        final TextView Txt_Ok = (TextView) layout.findViewById(R.id.btn_ok);
+        final TextView Txt_Cancel = (TextView) layout.findViewById(R.id.btn_cancel);
+        final MaterialDialog TeamInfo_Dialog = new MaterialDialog(Theme_Focus.this);
+        TeamInfo_Dialog
+                .setContentView(layout)
+                .setCanceledOnTouchOutside(true);
+        TeamInfo_Dialog.show();
+
+        Txt_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TeamInfo_Dialog.dismiss();
+            }
+        });
+        Txt_Ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(str_bookpage));
+                startActivity(newIntent);
+                TeamInfo_Dialog.dismiss();
+            }
+        });
     }
 }
 

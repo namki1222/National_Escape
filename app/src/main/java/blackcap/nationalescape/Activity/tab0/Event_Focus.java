@@ -7,12 +7,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -33,7 +34,7 @@ import java.net.URLConnection;
 import blackcap.nationalescape.R;
 import blackcap.nationalescape.Uitility.Progressbar_wheel;
 
-public class Event_Focus extends AppCompatActivity{
+public class Event_Focus extends AppCompatActivity {
     private ImageView Img_Back;
     private WebView Img_Event;
     private String str_contents= "";

@@ -2,13 +2,14 @@ package blackcap.nationalescape.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
@@ -22,6 +23,9 @@ import blackcap.nationalescape.Activity.tab1.Home_Focus;
 import blackcap.nationalescape.Model.Company_Model;
 import blackcap.nationalescape.R;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
+import static blackcap.nationalescape.Activity.MainActivity.bol_main;
+import static blackcap.nationalescape.Activity.MainActivity.mInterstitialAd;
 
 
 public class Tab0_Company_Adapter extends RecyclerView.Adapter<Tab0_Company_Adapter.ViewHolder> {

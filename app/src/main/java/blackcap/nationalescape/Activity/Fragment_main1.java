@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -16,13 +13,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import blackcap.nationalescape.Activity.tab1.Book_Chapter1;
 import blackcap.nationalescape.Activity.tab1.Home_Filter;
+import blackcap.nationalescape.Activity.tab1.Home_Focus;
+import blackcap.nationalescape.Activity.tab1.map;
 import blackcap.nationalescape.Adapter.Home_Adapter;
 import blackcap.nationalescape.Model.Company_Model;
 import blackcap.nationalescape.R;
@@ -32,9 +37,12 @@ import blackcap.nationalescape.Uitility.Progressbar_wheel;
 
 import static android.content.Context.MODE_PRIVATE;
 import static blackcap.nationalescape.Activity.MainActivity.User_Pk;
+import static blackcap.nationalescape.Activity.MainActivity.act_main;
 import static blackcap.nationalescape.Activity.MainActivity.gps_main;
 
-public class Fragment_main1 extends android.support.v4.app.Fragment {
+
+
+public class Fragment_main1 extends Fragment {
     private SharedPreferences preferences; //캐쉬 데이터 생성
     private SharedPreferences.Editor editor;
 
@@ -43,15 +51,20 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
     ImageView Img_Search, Img_Search_Refresh, Img_Filter;
     EditText EditText_Search;
 
-    public static ArrayList<Company_Model> company_models;
-    public static Home_Adapter home_adpater;
+    public ArrayList<Company_Model> company_models;
+    public Home_Adapter home_adpater;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView List_Home;
 
+    private ImageView Img_Map;
 
     String gps_x = "", gps_y = "";
 
     private String filter_area = "", filter_sort = "";
+    private String check_foreign = "", check_alone = "", check_escape = "";
+
+    private long lastTimeBackPressed;
+    private int click_count = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,7 +86,7 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
         return rootView;
     }
 
-    public void init(View rootView){
+    public void init(final View rootView){
         Img_Search = (ImageView)rootView.findViewById(R.id.img_search);
         Img_Search_Refresh = (ImageView)rootView.findViewById(R.id.img_search_refresh);
         Img_Filter = (ImageView)rootView.findViewById(R.id.img_filter);
@@ -90,6 +103,15 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
         EditText_Search = (EditText)rootView.findViewById(R.id.edit_search);
         EditText_Search.setMaxLines(1);
 
+        Img_Map = (ImageView)rootView.findViewById(R.id.img_map);
+        Img_Map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(act_main, map.class);
+                act_main.startActivity(intent);
+                act_main.overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
     }
     public void setSearch(){
         Img_Search.setOnClickListener(new View.OnClickListener() {
@@ -165,16 +187,22 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
                     gps_y = Double.toString(gps_main.getLongitude());
                 } else {
                     // GPS 를 사용할수 없으므로
-                    gps_main.showSettingsAlert();
+                    //gps_main.showSettingsAlert();
+                    gps_x = 37.497942+"";
+                    gps_y = 127.0254323+"";
                 }
 
                 preferences = getActivity().getSharedPreferences("escape", MODE_PRIVATE);
                 filter_area = preferences.getString("filter_area", "전국");
                 filter_sort = preferences.getString("filter_sort", "distance");
-
+                check_foreign = preferences.getString("check_foreign", "");
+                check_alone = preferences.getString("check_alone", "");
+                check_escape = preferences.getString("check_escape", "");
+                String checklist = check_foreign + check_alone + check_escape;
+                Log.i("테스트", checklist);
                 //홈 업체 리스트 데이터 셋팅
                 HttpClient http = new HttpClient();
-                String result = http.HttpClient("Web_Escape", "Home_List.jsp", gps_x, gps_y, User_Pk, filter_area, filter_sort);
+                String result = http.HttpClient("Web_Escape", "Home_List_v3.jsp", gps_x, gps_y, User_Pk, filter_area, filter_sort, checklist);
                 parseredData = jsonParserList(result);
 
                 company_models = new ArrayList<Company_Model>();
@@ -188,7 +216,8 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
                     String address = parseredData[i][6];
                     String distance = parseredData[i][7];
                     String favorite = parseredData[i][8];
-                    company_models.add(new Company_Model(getActivity(),company_pk, owner_pk, title, intro, grade_avg, recommend_count, address, distance, favorite));
+                    String flag_premium = parseredData[i][15];
+                    company_models.add(new Company_Model(getActivity(),company_pk, owner_pk, title, intro, grade_avg, recommend_count, address, distance, favorite, flag_premium));
                 }
                 return "succed";
             } catch (Exception e) {
@@ -207,10 +236,13 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             layoutManager.scrollToPosition(0);
 
-            //베스트 무료체험 어댑터 셋팅
-            home_adpater = new Home_Adapter(getActivity(), company_models);
-            List_Home.setLayoutManager(layoutManager);
-            List_Home.setAdapter(home_adpater);
+            if(getContext() != null){
+                //베스트 무료체험 어댑터 셋팅
+                home_adpater = new Home_Adapter(getActivity(), company_models);
+                List_Home.setLayoutManager(layoutManager);
+                List_Home.setAdapter(home_adpater);
+            }
+
 
             progressDialog.dismiss();
         }
@@ -237,7 +269,8 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
                     gps_y = Double.toString(gps_main.getLongitude());
                 } else {
                     // GPS 를 사용할수 없으므로
-                    gps_main.showSettingsAlert();
+                    gps_x = 37.497942+"";
+                    gps_y = 127.0254323+"";
                 }
 
                 //홈 업체 리스트 데이터 셋팅
@@ -256,7 +289,8 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
                     String address = parseredData[i][6];
                     String distance = parseredData[i][7];
                     String favorite = parseredData[i][8];
-                    company_models.add(new Company_Model(getActivity(),company_pk, owner_pk, title, intro, grade_avg, recommend_count, address, distance, favorite));
+                    String flag_premium = parseredData[i][15];
+                    company_models.add(new Company_Model(getActivity(),company_pk, owner_pk, title, intro, grade_avg, recommend_count, address, distance, favorite,flag_premium));
                 }
                 return "succed";
             } catch (Exception e) {
@@ -290,7 +324,7 @@ public class Fragment_main1 extends android.support.v4.app.Fragment {
         try {
             JSONObject json = new JSONObject(pRecvServerPage);
             JSONArray jArr = json.getJSONArray("List");
-            String[] jsonName = {"msg1", "msg2", "msg3","msg4", "msg5", "msg6","msg7", "msg8", "msg9"};
+            String[] jsonName = {"msg1", "msg2", "msg3","msg4", "msg5", "msg6","msg7", "msg8", "msg9", "msg10", "msg11", "msg12", "msg13", "msg14", "msg15", "msg16"};
             String[][] parseredData = new String[jArr.length()][jsonName.length];
             for (int i = 0; i < jArr.length(); i++) {
                 json = jArr.getJSONObject(i);
